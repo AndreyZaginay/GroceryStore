@@ -9,13 +9,13 @@ export default [
     //     path: 'users',
     //     loadChildren: () => import('./users/users-routing') 
     // },
-     {
-        path: '',
-        loadChildren: () => import('./store/store.routing') 
-    },
-    {
-        path: '*',
-        pathMatch: 'full',
-        redirectTo: ''
-    }
+{
+    path: '',
+    loadChildren: () => import('./store/store.routing') 
+},
+{
+    path: '*',
+    pathMatch: 'full',
+    redirectTo: ''
+}
 ] as Routes;
