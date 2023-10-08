@@ -7,7 +7,15 @@ export default [
         children: [
             {
                 path: 'products',
-                loadComponent: () => import('./products-list/products-list.component').then(m => m.ProductsListComponent)
+                loadComponent: () => import('./products/products.component').then(m => m.ProductsComponent)
+            },
+            {
+                path: 'about',
+                loadComponent: () => import('./about/about.component').then(m => m.AboutComponent)
+            },
+            {
+                path: 'contacts',
+                loadComponent: () => import('./contacts/contacts.component').then(m => m.ContactsComponent)
             },
             {
                 path: '',

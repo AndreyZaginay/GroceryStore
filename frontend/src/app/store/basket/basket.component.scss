@@ -2,15 +2,14 @@
     position: fixed;
     right: 0;
     top: 0;
-    width: 200px;
+    width: 300px;
     height: 100%;
     background: lightcoral;
-    contain: paint;
 
     &__toggle {
         transform: translate(-100%, calc((100vh - 100%) / 2));
         width: 40px;
         height: 40px;
-        background: red;  
+        background: rgb(88, 148, 194);  
     }
 }
