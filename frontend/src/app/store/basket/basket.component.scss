@@ -1,3 +1,15 @@
-// :host {
-//     height: 100%;
-// }
+.basket {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background: lightcoral;
+
+    &__toggle {
+        transform: translate(-100%, calc((100vh - 100%) / 2));
+        width: 40px;
+        height: 40px;
+        background: red;  
+    }
+}

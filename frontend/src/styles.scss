@@ -1,15 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@use './assets/scss/variables' as var;
+
 * {
    padding: 0;
    margin: 0;
    box-sizing: border-box;
    font-family: fantasy;
-   color: rgb(190, 73, 205);
+   color: var.$purple;
 }
 
-html {
-   height: 100%;
-}
+html,
 body {
    height: 100%;
 }

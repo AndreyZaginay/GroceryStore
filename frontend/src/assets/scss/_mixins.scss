@@ -1,0 +1,3 @@
+@mixin link-transition($property: all) {
+    transition: $property 0.3s ease-in-out;
+}
