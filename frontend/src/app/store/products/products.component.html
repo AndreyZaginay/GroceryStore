@@ -1,8 +1,16 @@
 <div class="products">
-   <div> 
-        <div *ngFor="let product of productsCategory">
+   <div class="products-category"> 
+        <p class="product-category" *ngFor="let product of productsCategory">
             {{product}}
-        </div>
+        </p>
+        <!-- <p class="product-category" *ngFor="let product of productsCategory">
+            {{product}}
+        </p>
+        <p class="product-category" *ngFor="let product of productsCategory">
+            {{product}}
+        </p> -->
     </div>
-    <div>2</div>    
+    <div>
+        <router-outlet></router-outlet>
+    </div>    
 </div>

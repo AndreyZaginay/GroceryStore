@@ -7,7 +7,7 @@ describe('ProductsListComponent', () => {
   let fixture: ComponentFixture<ProductsComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
+    TestBed.configureTestingModule({  
       declarations: [ProductsComponent]
     });
     fixture = TestBed.createComponent(ProductsComponent);

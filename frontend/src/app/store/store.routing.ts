@@ -7,7 +7,7 @@ export default [
         children: [
             {
                 path: 'products',
-                loadComponent: () => import('./products/products.component').then(m => m.ProductsComponent)
+                loadChildren: () => import('./products/products-routing')
             },
             {
                 path: 'about',
