@@ -8,10 +8,12 @@
 }
 
 .products-category {
+    padding-top: 10px;
     display: grid;
     grid-auto-rows: 40px;
     overflow-x: hidden;
     gap: 10px;
+    
 
     &::-webkit-scrollbar {
         display: none;
@@ -22,8 +24,9 @@
     @include mix.flex-center;
     padding: 20px;
     border: 1px solid lightgray;
+    border-radius: 5px;
     width: 200px;
-    transform: translateX(0);
+    cursor: pointer;
     @include mix.link-transition(transform);
     
     &:hover {
