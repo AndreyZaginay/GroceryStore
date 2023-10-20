@@ -40,7 +40,7 @@ export abstract class BaseFirestoreService<T extends FirestoreDocument> {
   protected addDoc(path: string, data: AddFirestoreDocument<T>) {
     const colRef = collection(this.firestore, path);
     return from(addDoc(colRef, data)).pipe(
-      map((doc) => doc.id)
+      map((docRef) => docRef.id)
     );
   }
 
