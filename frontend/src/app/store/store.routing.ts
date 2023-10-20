@@ -2,7 +2,7 @@ import { importProvidersFrom } from "@angular/core";
 import { getFirestore, provideFirestore } from "@angular/fire/firestore";
 import { Routes } from "@angular/router";
 
-import { FirebaseService } from "../services/firebase.service";
+import { ProductsService } from "../services/products.service";
 
 export default [
     {
@@ -10,7 +10,7 @@ export default [
         loadComponent: () => import('./store.component').then(m => m.StoreComponent),
         providers: [
             importProvidersFrom(provideFirestore(() => getFirestore())),
-            FirebaseService
+            ProductsService
         ],
         children: [
             {
