@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs';
+import { switchMap } from 'rxjs';
 
 import { ProductCardComponent } from './product-card/product-card.component';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { ProductsService } from '../../../services/products.service';
 
 @Component({
   selector: 'app-product-list',
@@ -14,15 +14,14 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-
-  constructor (private readonly route: ActivatedRoute,
-              private readonly firebaseService: FirebaseService
-    ) {}
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly productsService: ProductsService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.pipe(
-      switchMap(p => this.firebaseService.getProducts(p['category']))).subscribe(console.log)
-    // this.route.params.subscribe(p => console.log(p['category']))
+      switchMap((params) => this.productsService.getProducts(params['category']))
+    ).subscribe(console.log);
   }
-
 }
