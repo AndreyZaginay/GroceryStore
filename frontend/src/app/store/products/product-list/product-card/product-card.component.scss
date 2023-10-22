@@ -1,0 +1,28 @@
+@use '../../../../../assets/scss/variables' as var;
+
+.product-card {
+    height: 100%;
+    background: lightpink;
+    margin: 5px 5px 0 5px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 60% repeat(3, 10%);
+    text-align: center;
+}
+
+button {
+    width: 50%;
+    justify-self: center;
+    background: var.$purple;
+    color: var.$pink;
+    border-style: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: .7px solid rgb(77, 91, 107);
+    transition: all 1.5s ease;
+
+    &:hover {
+        background: var.$pink;
+        color: var.$purple;
+    }
+}
