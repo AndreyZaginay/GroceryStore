@@ -1,16 +1,10 @@
 <div class="products">
    <div class="products-category"> 
         <p class="product-category" *ngFor="let product of productsCategory" [routerLink]="[product]">
-            {{product}}
+            {{ product }}
         </p>
-        <!-- <p class="product-category" *ngFor="let product of productsCategory">
-            {{product}}
-        </p>
-        <p class="product-category" *ngFor="let product of productsCategory">
-            {{product}}
-        </p> -->
     </div>
-    <div>
+    <div class="product-list-wrapper">
         <router-outlet></router-outlet>
     </div>    
 </div>

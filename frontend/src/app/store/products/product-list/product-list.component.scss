@@ -1,0 +1,11 @@
+.product-list {
+    height: 100%;
+    display: grid;
+    grid-auto-rows: 250px;
+    grid-template-columns: repeat(5, 1fr);
+    overflow-y: scroll;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

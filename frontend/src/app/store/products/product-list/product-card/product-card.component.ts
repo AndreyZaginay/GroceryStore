@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BasketService } from 'src/app/store/basket/basket.service';
 import { Product } from 'src/app/entities/product';
@@ -12,9 +12,12 @@ import { Product } from 'src/app/entities/product';
 })
 export class ProductCardComponent {
 
+@Input()
+product!: Product;
+
 constructor (private readonly basketService: BasketService) {}
 
-  addProduct(product: Product):void {
+  addProduct(product: Product): void {
     this.basketService.addPurchase(product);
   }
 }

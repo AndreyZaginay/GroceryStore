@@ -8,7 +8,6 @@ export interface FirestoreDocument {
 
 export type AddFirestoreDocument<T extends FirestoreDocument> = Omit<T, 'id'>;
 export type UpdateFirestoreDocument<T extends FirestoreDocument> = Partial<AddFirestoreDocument<T>>;
-
 export type QueryFilterConstraint = ReturnType<typeof where>;
 
 export abstract class BaseFirestoreService<T extends FirestoreDocument> {

@@ -10,5 +10,5 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent {
-  readonly productsCategory: string[] = ['Dairy', 'Meat', 'Bakery', 'Grocery', 'Sweets', 'Fish', 'Alcohol', 'Drinks', 'Household chemicals'];
+  readonly productsCategory: string[] = ['dairy', 'meat', 'bakery', 'grocery', 'sweets', 'fish', 'alcohol', 'drinks', 'household chemicals'];
 }
