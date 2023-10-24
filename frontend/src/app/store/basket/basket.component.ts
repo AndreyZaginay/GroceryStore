@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { BasketService } from './basket.service';
+import { Subject } from 'rxjs';
+
 import { Product } from 'src/app/entities/product';
 import { Purchase } from 'src/app/entities/purchase';
+import { BasketService } from './basket.service';
 
 @Component({
   selector: 'app-basket',
@@ -29,11 +31,21 @@ import { Purchase } from 'src/app/entities/purchase';
   ]
 })
 export class BasketComponent {
-  purchases: Purchase[] = this.basketService.purchases
-  constructor (private readonly basketService: BasketService) {}
-
+  
+  purchases$: Subject<Purchase[]> = this.basketService.purchasesSubject;
   isOpen = false;
+
+  constructor(private readonly basketService: BasketService) {}
+
   toggle() {
     this.isOpen = !this.isOpen;
+  }
+
+  addPurchase(product: Product) {
+    this.basketService.addPurchase(product);
+  }
+
+  decreasePurchase(product: Product) {
+    this.basketService.decreasePurchase(product);
   }
 }
