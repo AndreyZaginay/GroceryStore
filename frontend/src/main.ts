@@ -1,22 +1,6 @@
-import { bootstrapApplication } from "@angular/platform-browser";
-import { provideRouter } from "@angular/router";
-import { provideAnimations } from "@angular/platform-browser/animations";
-import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
-import { provideFirestore } from "@angular/fire/firestore";
-import { getFirestore } from "firebase/firestore";
-import { importProvidersFrom } from "@angular/core";
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import appRouting from "./app/app-routing";
-import { firebaseConfig } from "./environments/firebaseConfig";
-import { AppComponent } from "./app/app.component";
+import { AppModule } from './app/app.module';
 
-
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideAnimations(),
-    provideRouter(appRouting),
-    importProvidersFrom([
-      provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    ]),
-  ]
-});
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));

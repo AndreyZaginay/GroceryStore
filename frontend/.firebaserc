@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "grosery-f892b"
+  },
+  "targets": {
+    "grosery-f892b": {
+      "hosting": {
+        "frontend": [
+          "grosery-f892b"
+        ]
+      }
+    }
+  }
+}

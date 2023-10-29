@@ -1,29 +1,28 @@
-import { importProvidersFrom } from "@angular/core";
-import { getFirestore, provideFirestore } from "@angular/fire/firestore";
 import { Routes } from "@angular/router";
 
-import { ProductsService } from "../services/products.service";
+import { StoreComponent } from "./store.component";
+import { AboutComponent } from "./about/about.component";
+import { ContactsComponent } from "./contacts/contacts.component";
 
-export default [
+export const routes: Routes = [
     {
         path: '',
-        loadComponent: () => import('./store.component').then(m => m.StoreComponent),
-        providers: [
-            importProvidersFrom(provideFirestore(() => getFirestore())),
-            ProductsService
-        ],
+        // loadComponent: () => import('./store.component').then(m => m.StoreComponent),
+        component: StoreComponent,
         children: [
             {
                 path: 'products',
-                loadChildren: () => import('./products/products-routing')
+                loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
             },
             {
                 path: 'about',
-                loadComponent: () => import('./about/about.component').then(m => m.AboutComponent)
+                // loadComponent: () => import('./about/about.component').then(m => m.AboutComponent)
+                component: AboutComponent
             },
             {
                 path: 'contacts',
-                loadComponent: () => import('./contacts/contacts.component').then(m => m.ContactsComponent)
+                // loadComponent: () => import('./contacts/contacts.component').then(m => m.ContactsComponent)
+                component: ContactsComponent
             },
             {
                 path: '',
@@ -32,4 +31,4 @@ export default [
             }
         ]
     },
-] as Routes
+];

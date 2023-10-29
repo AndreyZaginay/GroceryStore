@@ -5,6 +5,11 @@ import { BaseFirestoreService } from "./firestore.service";
 
 @Injectable()
 export class ProductsService extends BaseFirestoreService<Product> {
+
+  getImg(): any {
+    return this.getProductImg();
+  }
+
   getProducts(category: string) {
     return this.getDocs(category);
   }

@@ -1,6 +1,6 @@
 <div class="product-card">
-    <img src="" alt="">
-    <p>{{ product.name }}</p>
+    <img [src]="imgUrl$ | async" alt="">
+  <p>{{ product.name }}</p>
     <p>$</p>
     <button (click)="addProduct(product)">Add to basket</button>
 </div>

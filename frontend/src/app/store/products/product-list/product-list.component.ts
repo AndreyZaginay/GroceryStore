@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 
-import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductsService } from '../../../services/products.service';
 import { Product } from 'src/app/entities/product';
 
 @Component({
   selector: 'app-product-list',
-  standalone: true,
-  imports: [CommonModule, ProductCardComponent],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })

@@ -19,11 +19,11 @@ export class BasketService {
     const target = this.purchases.find((purchase) => purchase.product.name === product.name);
     if (!target) {
       this.purchases.push({ count: 1, product });
-      this.updatePurchases(this.purchases);
+      this.emitPurchases(this.purchases);
       return;
     }
     target.count++;
-    this.updatePurchases(this.purchases);
+    this.emitPurchases(this.purchases);
   }
 
   decreasePurchase(product: Product): void {
@@ -31,16 +31,16 @@ export class BasketService {
     target.count--;
     if (target.count === 0) {
       this.removePurchase(product);
-      this.updatePurchases(this.purchases);
+      this.emitPurchases(this.purchases);
     }
   }
 
   removePurchase(product: Product): void {
     this.purchases = this.purchases.filter((purchase) => purchase.product.name !== product.name);
-    this.updatePurchases(this.purchases);
+    this.emitPurchases(this.purchases);
   }
 
-  updatePurchases(purchases: Purchase[]): void {
+  emitPurchases(purchases: Purchase[]): void {
     this.purchasesSubject.next(purchases);
   }
 }

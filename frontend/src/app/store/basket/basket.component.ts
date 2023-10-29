@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subject } from 'rxjs';
 
@@ -9,8 +8,6 @@ import { BasketService } from './basket.service';
 
 @Component({
   selector: 'app-basket',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.scss'],
   animations: [
