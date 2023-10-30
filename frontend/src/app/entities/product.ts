@@ -3,7 +3,6 @@ import { AddFirestoreDocument, FirestoreDocument, UpdateFirestoreDocument } from
 export interface Product extends FirestoreDocument {
     name: string;
     price: number;
-    img: string;
     typeOfBuying: string;
 }
 

@@ -1,6 +1,6 @@
 <div class="product-card">
     <img [src]="imgUrl$ | async" alt="">
   <p>{{ product.name }}</p>
-    <p>$</p>
+    <p>{{ product.price }} $</p>
     <button (click)="addProduct(product)">Add to basket</button>
 </div>

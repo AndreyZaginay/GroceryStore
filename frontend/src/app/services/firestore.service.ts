@@ -31,8 +31,8 @@ export abstract class BaseFirestoreService<T extends FirestoreDocument> {
     );
   }
 
-  protected getProductImg() {
-    return from(getDownloadURL(ref(this.storage, 'bread.jpg')));
+  protected getProductImg(productName: string) {
+    return from(getDownloadURL(ref(this.storage, productName + '.jpg')));
   }
 
   protected getDoc(path: string) {
