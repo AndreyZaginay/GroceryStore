@@ -1,9 +1,9 @@
-import { AddFirestoreDocument, FirestoreDocument, UpdateFirestoreDocument } from "../services/firestore.service";
+import { AddFirestoreDocument, FirestoreDocument, UpdateFirestoreDocument } from "../services/firebase/firestore.service";
 
 export interface Product extends FirestoreDocument {
     name: string;
     price: number;
-    typeOfBuying: string;
+    measurement: string;
 }
 
 export type AddProduct = AddFirestoreDocument<Product>;

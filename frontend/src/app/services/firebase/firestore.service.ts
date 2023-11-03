@@ -1,7 +1,6 @@
 import { inject } from '@angular/core';
 import { addDoc, collection, deleteDoc, doc, Firestore, getDoc, getDocs, query, updateDoc, where } from '@angular/fire/firestore';
-import { concatAll, from, map, Observable, of, toArray } from "rxjs";
-import { Storage, StorageReference, getDownloadURL, ref } from '@angular/fire/storage';
+import { concatAll, from, map, Observable, toArray } from "rxjs";
 
 export interface FirestoreDocument {
   id: string;
@@ -13,7 +12,6 @@ export type QueryFilterConstraint = ReturnType<typeof where>;
 
 export abstract class BaseFirestoreService<T extends FirestoreDocument> {
   private readonly firestore = inject(Firestore);
-  private storage: Storage = inject(Storage);
 
   protected getDocs(path: string, constraints?: QueryFilterConstraint): Observable<T[]>;  
   protected getDocs(path: string, constraints: QueryFilterConstraint): Observable<T[]> {
@@ -30,11 +28,7 @@ export abstract class BaseFirestoreService<T extends FirestoreDocument> {
       toArray()
     );
   }
-
-  protected getProductImg(productName: string) {
-    return from(getDownloadURL(ref(this.storage, productName + '.jpg')));
-  }
-
+  
   protected getDoc(path: string) {
     const docRef = doc(this.firestore, path);
     return from(getDoc(docRef)).pipe(

@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import { AddProduct, Product, UpdateProduct} from "../entities/product";
-import { BaseFirestoreService } from "./firestore.service";
+import { BaseFirestoreService } from "./firebase/firestore.service";
 
 @Injectable()
 export class ProductsService extends BaseFirestoreService<Product> {
-
-  getImg(productName: string): any {
-    return this.getProductImg(productName);
-  }
 
   getProducts(category: string) {
     return this.getDocs(category);

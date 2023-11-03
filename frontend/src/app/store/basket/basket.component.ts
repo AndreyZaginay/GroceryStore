@@ -45,4 +45,8 @@ export class BasketComponent {
   decreasePurchase(product: Product) {
     this.basketService.decreasePurchase(product);
   }
+
+  sumUp() {
+    this.basketService.sumUp();
+  }
 }

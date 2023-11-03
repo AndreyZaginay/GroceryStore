@@ -43,4 +43,12 @@ export class BasketService {
   emitPurchases(purchases: Purchase[]): void {
     this.purchasesSubject.next(purchases);
   }
+
+  sumUp(): void {
+    let sum: number = 0;
+    this.purchases.forEach(({ count, product }) => {
+      sum += +count * +product.price;      
+    })
+    console.log(`${sum}$`);
+  }
 }

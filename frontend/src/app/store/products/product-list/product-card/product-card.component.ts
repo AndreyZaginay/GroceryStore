@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { BasketService } from 'src/app/store/basket/basket.service';
+import { StorageService } from 'src/app/services/firebase/storage.service';
 import { Product } from 'src/app/entities/product';
-import { ProductsService } from 'src/app/services/products.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-card',
@@ -17,14 +17,13 @@ product!: Product;
 
 imgUrl$!: Observable<string>;
 
-constructor (private readonly basketService: BasketService,private readonly productService: ProductsService) {}
+constructor (private readonly basketService: BasketService, private readonly storageService: StorageService) {}
 
   ngOnInit(): void {
-   this.imgUrl$ = this.productService.getImg(this.product.name);
+   this.imgUrl$ = this.storageService.getProductImg(this.product.name)
   }
 
   addProduct(product: Product): void {
     this.basketService.addPurchase(product);
   }
-
 }
