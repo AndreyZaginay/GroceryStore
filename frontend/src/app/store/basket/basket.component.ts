@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { Product } from 'src/app/entities/product';
 import { Purchase } from 'src/app/entities/purchase';
 import { BasketService } from './basket.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-basket',
@@ -32,7 +34,7 @@ export class BasketComponent {
   purchases$: Subject<Purchase[]> = this.basketService.purchasesSubject;
   isOpen = false;
 
-  constructor(private readonly basketService: BasketService) {}
+  constructor(private readonly basketService: BasketService, private readonly dialog: MatDialog) {}
 
   toggle() {
     this.isOpen = !this.isOpen;
@@ -48,5 +50,14 @@ export class BasketComponent {
 
   sumUp() {
     this.basketService.sumUp();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(_ => {
+      console.log('The dialog was closed');
+    });
   }
 }

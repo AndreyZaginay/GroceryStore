@@ -1,0 +1,4 @@
+<div class="order-bill">
+    <p *ngIf="orderPrice$ | async as orderPrice">Order price: {{orderPrice}}$ </p>
+    <button (click)="closeDialog()">Buy</button>
+</div>

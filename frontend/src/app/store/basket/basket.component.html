@@ -7,8 +7,6 @@
             <button (click)="addPurchase(purchase.product)">+</button>
             <button (click)="decreasePurchase(purchase.product)">-</button>
         </div>
-    </div>
-    <div>
-        <button (click)="sumUp()">SumUp</button>
+        <button *ngIf="purchases.length" (click)="openDialog()">SumUp</button>
     </div>
 </div>

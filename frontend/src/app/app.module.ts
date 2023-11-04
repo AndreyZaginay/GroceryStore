@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { provideAnimations } from "@angular/platform-browser/animations";
+import { provideAnimations, BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { getFirestore, provideFirestore } from "@angular/fire/firestore";
 import { getStorage, provideStorage } from '@angular/fire/storage';
@@ -19,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
     provideStorage(() => getStorage()),
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     provideAnimations()
