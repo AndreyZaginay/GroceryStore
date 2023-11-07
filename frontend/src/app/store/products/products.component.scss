@@ -2,16 +2,14 @@
 @use '../../../assets/scss/variables' as var;
 
 .products {
-    height: 100%;
-    display: grid;
-    grid-template-columns: 20% 80%;
-    background: #CAEDFF;
+    @include mix.grid-auto-rows(none, none, 20% 80%);
+    @include mix.height100();
+    background: var.$ligth-blue;
 }
 
 .products-category {
+    @include mix.grid-auto-rows(40px);
     padding-top: 10px;
-    display: grid;
-    grid-auto-rows: 40px;
     overflow-y: auto;
     gap: 10px;
     
@@ -22,10 +20,10 @@
 
 .product-category {
     @include mix.flex-center;
+    @include mix.border-radius(5px);
     padding: 20px;
     border: 1px solid lightgray;
     background: var.$pink;
-    border-radius: 5px;
     width: 200px;
     cursor: pointer;
     @include mix.link-transition(transform);

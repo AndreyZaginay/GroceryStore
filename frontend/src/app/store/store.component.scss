@@ -2,15 +2,13 @@
 @use '../../assets/scss/mixins' as mix;
 
 :host {
-    height: 100%;
-    display: grid;
-    grid-template-rows: 10% 90%;
+    @include mix.grid-auto-rows(none, 10% 90%);
+    @include mix.height100();
 }
 
 .head-bar {
+    @include mix.grid-auto-rows(none, none, repeat(2, 1fr));
     background-color: var.$pink;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
 }
 
 .logo-div {
@@ -29,9 +27,7 @@
 }
 
 .navigation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include mix.flex-center();
     gap: 30px;
 }
 
@@ -48,7 +44,7 @@
         position: absolute;
         width: 100%;
         height: 4px;
-        border-radius: 4px;
+        @include mix.border-radius(4px);
         background-color: var.$dark-purple;
         bottom: -5px;
         left: 0;

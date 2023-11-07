@@ -1,12 +1,12 @@
 @use '../../../../../assets/scss/variables' as var;
+@use '../../../../../assets/scss/mixins' as mix;
 
 .product-card {
+    @include mix.grid-auto-rows(none, 60% repeat(3, 10%));
     height: 100%;
     background: lightpink;
     margin: 5px 5px 0 5px;
-    border-radius: 10px;
-    display: grid;
-    grid-template-rows: 60% repeat(3, 10%);
+    @include mix.border-radius(10px);
     text-align: center;
 }
 
@@ -15,11 +15,10 @@ button {
     justify-self: center;
     background: var.$purple;
     color: var.$pink;
-    border-style: none;
-    border-radius: 5px;
+    @include mix.border-radius(5px);
     cursor: pointer;
     border: .7px solid rgb(77, 91, 107);
-    transition: all 1.5s ease;
+    transition: all 1s ease;
 
     &:hover {
         background: var.$pink;
@@ -28,7 +27,7 @@ button {
 }
 
 img {
+    @include mix.height100();
     width: 100%;
-    height: 100%;
     padding: 7px;
 }

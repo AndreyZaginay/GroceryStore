@@ -1,9 +1,11 @@
+@use '../../../assets/scss/mixins' as mix;
+
 .basket {
+    @include mix.height100();
     position: fixed;
     right: 0;
     top: 0;
     width: 300px;
-    height: 100%;
     background: lightcoral;
     content: paint;
 
@@ -20,21 +22,22 @@
 }
 
 .purchases {
+    @include mix.grid-auto-rows(30px);
     padding: 10px;
-    display: grid;
-    grid-auto-rows: 30px;
     gap: 5px;
 
     & .purchase {
-        display: grid;
-        grid-template-columns: 50% 10% 40%;
+        @include mix.grid-auto-rows(none, none, 50% 10% 40%);
         align-items: center;
         text-align: left;
 
         & .purchase-buttons {
-            display: grid;
-            grid-template-columns: 40% 40%;
+            @include mix.grid-auto-rows(none, none, 40% 40%);
             gap: 10px;
         }
     }
+}
+
+button {
+    font-size: 20px;
 }
