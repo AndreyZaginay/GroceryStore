@@ -1,6 +1,6 @@
 <div class="products">
    <div class="products-category"> 
-        <p class="product-category" *ngFor="let product of productsCategory" [routerLink]="[product]">
+        <p class="product-category" routerLinkActive="product-category--active" *ngFor="let product of productsCategory" [routerLink]="[product]">
             {{ product }}
         </p>
     </div>
