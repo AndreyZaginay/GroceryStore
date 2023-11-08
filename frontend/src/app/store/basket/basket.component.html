@@ -1,17 +1,21 @@
 <div [@basket]="isOpen ? 'open' : 'close'" class="basket" >
     <img src="../../../assets/img/cart.png" alt="" (click)="toggle()" class="basket__toggle">
-    <h1 class="basket-title">Your basket</h1>
-        <div class="purchases" *ngIf="purchases$ | async as purchases">
+    <div class="basket-content">
+        <h1 class="basket-title">Your basket</h1>
+        <ng-container *ngIf="purchases$ | async as purchases">
             <div class="purchase" *ngFor="let purchase of purchases">
-                <div>
+                <div class="purchase__name">
                     {{ purchase.product.name }}
                 </div>
-                <div>{{ purchase.count }}</div>
-                <div class="purchase-buttons">
+                <div class="purchase__count">
+                    {{ purchase.count }}
+                </div>
+                <div class="purchase__buttons">
                     <button (click)="addPurchase(purchase.product)">+</button>
                     <button (click)="decreasePurchase(purchase.product)">-</button>
                 </div>
             </div>
             <button *ngIf="purchases.length" (click)="openDialog()">SumUp</button>
-        </div>
+        </ng-container>
+    </div>
 </div>
