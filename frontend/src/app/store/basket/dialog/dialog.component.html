@@ -1,4 +1,17 @@
 <div class="order-bill">
-    <p *ngIf="orderPrice$ | async as orderPrice">Order price: {{orderPrice}}$ </p>
-    <button (click)="closeDialog()">Buy</button>
+    <p class="bill-header">Your bill</p>
+    <hr>
+    <div class="bill-purchases" *ngFor="let purchase of purchases">
+        <div class="bill-purchase"> 
+            <div>{{ purchase.product.name }}:</div>
+            <div class="bill-purchase-count">{{ purchase.count }}</div>
+            <div class="bill-purchase-price">{{ purchase.product.price * purchase.count }}$</div>
+        </div>
+    </div>
+    <hr>
+    <div class="bill-bottom">
+        <p class="order-price">Order price: </p>
+        <div *ngIf="orderPrice$ | async as orderPrice">{{ orderPrice }}$</div>
+        <button (click)="closeDialog()">Buy</button>
+    </div>
 </div>

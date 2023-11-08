@@ -18,11 +18,10 @@ button {
     @include mix.border-radius(5px);
     cursor: pointer;
     border: .7px solid rgb(77, 91, 107);
-    transition: all 1s ease;
+    transition: all 0.1s ease;
 
     &:hover {
-        background: var.$pink;
-        color: var.$purple;
+        box-shadow: 2px 4px 2px rgb(126, 61, 139);
     }
 }
 

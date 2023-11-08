@@ -1,10 +1,10 @@
 @use '../../../assets/scss/mixins' as mix;
 
 .basket {
-    @include mix.height100();
+    height: 100%;
     position: fixed;
     right: 0;
-    top: 0;
+    bottom: 0;
     width: 300px;
     background: lightcoral;
     content: paint;

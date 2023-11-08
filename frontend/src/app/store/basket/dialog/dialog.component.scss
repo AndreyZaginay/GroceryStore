@@ -1,4 +1,45 @@
+@use '../../../../assets/scss/variables' as var;
+@use '../../../../assets/scss/mixins' as mix;
+
 .order-bill {
-    width: 20%;
-    height: 40%;
+    height: 50vh;
+    width: 30vh;
+    background: var.$pink;
+    padding: 7px;
+    overflow-y: auto;
+  
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.bill-header {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.bill-purchases {
+    @include mix.grid-auto-rows(content);
+
+    & .bill-purchase {
+        @include mix.grid-auto-rows(none, none, 50% 25% 25%);
+        align-items: center;
+        text-align: left;
+    }
+}
+
+.bill-bottom {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-price {
+    padding-top: 5px;
+}
+
+button {
+    height: 25px;
+    width: 40px;
 }

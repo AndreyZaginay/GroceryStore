@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { BasketService } from '../basket.service';
+import { Purchase } from 'src/app/entities/purchase';
 
 @Component({
   selector: 'app-dialog',
@@ -11,6 +12,8 @@ import { BasketService } from '../basket.service';
 export class DialogComponent implements OnInit {
 
   public orderPrice$!: Observable<number>;
+
+  public purchases: Purchase[] = this.basketService.purchases;
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
