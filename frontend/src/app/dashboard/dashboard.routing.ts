@@ -2,8 +2,6 @@ import { Routes } from "@angular/router";
 
 import { DashboardComponent } from "./dashboard.component";
 import { authGuard } from "../shared/guards/auth.guard";
-import { inject } from "@angular/core";
-import { AuthService } from "../services/firebase/auth.service";
 
 export const routes: Routes = [
     {
@@ -18,6 +16,10 @@ export const routes: Routes = [
                 path: 'admin-store',
                 loadChildren: () => import('./admin-store/admin-store.module').then(m => m.AdminStoreModule),
                 canActivate: [authGuard],
+            },
+            {
+                path: 'auth',
+                loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
             },
             {
                 path: '',

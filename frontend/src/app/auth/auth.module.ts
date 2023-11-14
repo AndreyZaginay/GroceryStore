@@ -1,0 +1,19 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { routes } from './auth.routing';
+import { AuthComponent } from './auth.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+
+@NgModule({
+  declarations: [AuthComponent, LoginComponent, RegisterComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes)
+  ]
+})
+export class AuthModule { }
