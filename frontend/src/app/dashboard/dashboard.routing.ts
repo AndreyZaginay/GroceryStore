@@ -1,7 +1,9 @@
 import { Routes } from "@angular/router";
 
 import { DashboardComponent } from "./dashboard.component";
-import { StoreComponent } from "./store/store.component";
+import { authGuard } from "../shared/guards/auth.guard";
+import { inject } from "@angular/core";
+import { AuthService } from "../services/auth.service";
 
 export const routes: Routes = [
     {
@@ -11,6 +13,11 @@ export const routes: Routes = [
             {
                 path: 'store',
                 loadChildren: () => import('./store/store.module').then(m => m.StoreModule)
+            },
+            {
+                path: 'admin-store',
+                loadChildren: () => import('./admin-store/admin-store.module').then(m => m.AdminStoreModule),
+                canActivate: [authGuard],
             },
             {
                 path: '',
