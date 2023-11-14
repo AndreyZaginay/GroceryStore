@@ -1,5 +1,5 @@
-@use '../../assets/scss/variables' as var;
-@use '../../assets/scss/mixins' as mix;
+@use '../../../assets/scss/variables' as var;
+@use '../../../assets/scss/mixins' as mix;
 
 :host {
     @include mix.grid-auto-rows(none, 10% 90%);

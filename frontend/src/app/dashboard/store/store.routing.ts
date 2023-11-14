@@ -7,7 +7,6 @@ import { ContactsComponent } from "./contacts/contacts.component";
 export const routes: Routes = [
     {
         path: '',
-        // loadComponent: () => import('./store.component').then(m => m.StoreComponent),
         component: StoreComponent,
         children: [
             {
@@ -16,12 +15,10 @@ export const routes: Routes = [
             },
             {
                 path: 'about',
-                // loadComponent: () => import('./about/about.component').then(m => m.AboutComponent)
                 component: AboutComponent
             },
             {
                 path: 'contacts',
-                // loadComponent: () => import('./contacts/contacts.component').then(m => m.ContactsComponent)
                 component: ContactsComponent
             },
             {

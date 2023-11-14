@@ -1,4 +1,4 @@
-@use '../../../../assets/scss/mixins' as mix;
+@use '../../../../../assets/scss/mixins' as mix;
 
 .product-list {
     @include mix.grid-auto-rows(400px, none, repeat(5, 1fr));

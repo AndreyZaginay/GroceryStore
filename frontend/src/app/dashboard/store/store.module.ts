@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 
-import { ProductsService } from '../services/products.service';
+import { ProductsService } from '../../services/products.service';
 import { routes } from './store.routing';
 import { StoreComponent } from './store.component';
 import { BasketComponent } from './basket/basket.component';
