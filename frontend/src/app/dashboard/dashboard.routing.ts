@@ -18,10 +18,6 @@ export const routes: Routes = [
                 canActivate: [authGuard],
             },
             {
-                path: 'auth',
-                loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
-            },
-            {
                 path: '',
                 pathMatch: 'prefix',
                 redirectTo: 'store'

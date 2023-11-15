@@ -1,8 +1,10 @@
 @use '../../../assets/scss/mixins' as mix;
+@use '../../../assets/scss/variables' as var;
 
 :host {
     height: 100%;
     @include mix.flex-center;
+    background: var.$ligth-blue;
 }
 
 form {
