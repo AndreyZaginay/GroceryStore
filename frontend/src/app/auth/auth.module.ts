@@ -7,6 +7,7 @@ import { routes } from './auth.routing';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthService } from '../services/firebase/auth.service';
 
 @NgModule({
   declarations: [AuthComponent, LoginComponent, RegisterComponent],
@@ -14,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
-  ]
+  ],
+  providers: [AuthService]
 })
 export class AuthModule { }

@@ -1,0 +1,11 @@
+@use '../../../assets/scss/mixins' as mix;
+
+:host {
+    height: 100%;
+    @include mix.flex-center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}

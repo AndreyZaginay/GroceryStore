@@ -10,14 +10,14 @@ export class AuthService {
   
   constructor() { }
 
-  signUp(email: string, password: string) {
-    from(createUserWithEmailAndPassword(this.auth, email, password)).pipe(
+  signUp(credentials: any) {
+    from(createUserWithEmailAndPassword(this.auth, credentials.email, credentials.password)).pipe(
       map((userCredential) => userCredential.user)
     )
   }
 
-  signIn(email: string, password: string) {
-    from(signInWithEmailAndPassword(this.auth, email, password)).pipe(
+  signIn(credentials: any) {
+    from(signInWithEmailAndPassword(this.auth, credentials.email, credentials.password)).pipe(
       map((userCredential) => userCredential.user)
     )
   }

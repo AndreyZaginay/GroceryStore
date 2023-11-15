@@ -1,6 +1,6 @@
 <form action="" [formGroup]="registerForm">
     <input type="text" formControlName="email">
     <input type="password" formControlName="password">
-    <input type="password" formControlName="confirnPassword">
+    <input type="password" formControlName="confirmPassword">
     <button [disabled]="registerForm.invalid" (click)="register()">Sign up</button>
 </form>

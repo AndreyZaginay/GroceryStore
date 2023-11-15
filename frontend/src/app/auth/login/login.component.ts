@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { AuthService } from 'src/app/services/firebase/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
 
-  constructor() {}
+  constructor(private readonly authService: AuthService) {}
 
   ngOnInit(): void {
     this.initLoginForm();
   }
 
   login(): void {
-    console.log(this.loginForm.getRawValue());
+    this.authService.signIn(this.loginForm.getRawValue());
   }
 
   initLoginForm(): void {

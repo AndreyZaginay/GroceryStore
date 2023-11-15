@@ -1,5 +1,5 @@
 <form action="" [formGroup]="loginForm">
     <input type="text" formControlName="email">
-    <input type="text" formControlName="password">
+    <input type="password" formControlName="password">
     <button [disabled]="loginForm.invalid" (click)="login()">Sign in</button>
 </form>
