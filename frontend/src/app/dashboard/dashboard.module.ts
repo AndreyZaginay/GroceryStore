@@ -4,10 +4,9 @@ import { RouterModule } from '@angular/router';
 
 import { routes } from './dashboard.routing';
 import { DashboardComponent } from './dashboard.component';
-import { AdminStoreComponent } from './admin-store/admin-store.component';
 
 @NgModule({
-  declarations: [DashboardComponent, AdminStoreComponent],
+  declarations: [DashboardComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes)

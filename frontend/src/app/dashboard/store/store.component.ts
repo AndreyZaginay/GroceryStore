@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./store.component.scss']
 })
 export class StoreComponent {
-  
+  readonly productsCategory: string[] = ['dairy', 'meat', 'bakery', 'grocery', 'sweets', 'fish', 'alcohol', 'drinks', 'household chemicals'];
+
 }

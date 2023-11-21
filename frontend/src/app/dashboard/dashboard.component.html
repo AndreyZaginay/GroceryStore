@@ -1,1 +1,13 @@
-<router-outlet></router-outlet>
+<div class="head-bar">
+    <div class="logo-div">
+        <p class="logo">Products shop</p>
+    </div>
+    <div class="navigation">
+        <a class="link" routerLink="profile" routerLinkActive="link--active">Profile</a>
+        <a class="link" routerLink="admin-store" routerLinkActive="link--active">Admin-store</a>
+        <a class="link" routerLink="store" routerLinkActive="link--active">Store</a>
+    </div>
+</div>
+<div>
+    <router-outlet></router-outlet>  
+</div>

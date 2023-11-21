@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from 'src/app/services/firebase/auth.service';
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.authService.signIn(this.loginForm.getRawValue());
+    this.authService.user$.subscribe(console.log);
   }
 
   initLoginForm(): void {

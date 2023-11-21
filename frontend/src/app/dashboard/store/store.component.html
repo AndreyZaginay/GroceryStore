@@ -1,14 +1,11 @@
-<div class="head-bar">
-    <div class="logo-div">
-        <p class="logo">Products shop</p>
+<div class="store">
+        <div class="products-category"> 
+            <a class="product-category" routerLinkActive="product-category--active" *ngFor="let product of productsCategory" [routerLink]="[product]">
+                 {{ product }}
+            </a>
+         </div> 
+    <div>
+        <router-outlet></router-outlet>
     </div>
-    <div class="navigation">
-        <a class="link" routerLink="about" routerLinkActive="link--active">About us</a>
-        <a class="link" routerLink="contacts" routerLinkActive="link--active">Contacts</a>
-        <a class="link" routerLink="products" routerLinkActive="link--active">Products</a>
-    </div>
-</div>
-<div>
-    <router-outlet></router-outlet>  
 </div>
 <app-basket></app-basket>

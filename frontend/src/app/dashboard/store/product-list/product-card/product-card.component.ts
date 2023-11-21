@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { BasketService } from '../../../basket/basket.service';
+import { BasketService } from '../../basket/basket.service';
 import { StorageService } from 'src/app/services/firebase/storage.service';
 import { Product } from 'src/app/entities/product';
 
