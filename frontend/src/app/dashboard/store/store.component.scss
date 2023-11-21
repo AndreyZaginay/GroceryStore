@@ -1,5 +1,6 @@
 @use '../../../assets/scss/variables' as var;
 @use '../../../assets/scss/mixins' as mix;
+
 :host {
     height: 100%
 }
@@ -45,4 +46,3 @@
 .product-list-wrapper {
     overflow: hidden;
 }
-

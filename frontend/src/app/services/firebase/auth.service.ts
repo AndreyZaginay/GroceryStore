@@ -1,23 +1,28 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, user } from '@angular/fire/auth';
-import { from, map } from 'rxjs';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, user, signOut, User } from '@angular/fire/auth';
+import { Observable, from, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
   private readonly auth: Auth = inject(Auth);
-  readonly user$ = user(this.auth);
+  readonly user$: Observable<User | null> = user(this.auth);
   
   signUp(credentials: any) {
-    from(createUserWithEmailAndPassword(this.auth, credentials.email, credentials.password)).pipe(
-      map((userCredential) => userCredential.user)
+    return from(createUserWithEmailAndPassword(this.auth, credentials.email, credentials.password)).pipe(
+      map((userCredential) => userCredential.user),
     )
   }
 
   signIn(credentials: any) {
-    from(signInWithEmailAndPassword(this.auth, credentials.email, credentials.password)).pipe(
-      map((userCredential) => userCredential.user)
+    return from(signInWithEmailAndPassword(this.auth, credentials.email, credentials.password)).pipe(
+      map((userCredential) => userCredential.user),
     )
+  }
+
+  signOut() {
+    signOut(this.auth);
   }
 }

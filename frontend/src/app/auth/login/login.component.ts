@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/services/firebase/auth.service';
 
@@ -10,17 +11,22 @@ import { AuthService } from 'src/app/services/firebase/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
   loginForm!: FormGroup;
-
-  constructor(private readonly authService: AuthService) {}
+  error: string | undefined = undefined;
 
   ngOnInit(): void {
+    this.authService.signOut();
     this.initLoginForm();
   }
 
   login(): void {
-    this.authService.signIn(this.loginForm.getRawValue());
-    this.authService.user$.subscribe(console.log);
+    this.authService.signIn(this.loginForm.getRawValue()).pipe(
+    ).subscribe({
+      error: e => this.error = e.message,
+      complete: () => this.router.navigate([''])
+    });
   }
 
   initLoginForm(): void {

@@ -3,9 +3,10 @@
         <p class="logo">Products shop</p>
     </div>
     <div class="navigation">
-        <a class="link" routerLink="profile" routerLinkActive="link--active">Profile</a>
-        <a class="link" routerLink="admin-store" routerLinkActive="link--active">Admin-store</a>
         <a class="link" routerLink="store" routerLinkActive="link--active">Store</a>
+        <a *ngIf="user$ | async" class="link" routerLink="profile" routerLinkActive="link--active">Profile</a>
+        <a *ngIf="user$ | async" class="link" routerLink="admin-store" routerLinkActive="link--active">Admin-store</a>
+        <a *ngIf="!(user$ | async)" class="link" routerLink="/auth" routerLinkActive="link--active">Login</a>
     </div>
 </div>
 <div>

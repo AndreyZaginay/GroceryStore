@@ -2,4 +2,8 @@
     <input type="text" formControlName="email">
     <input type="password" formControlName="password">
     <button [disabled]="loginForm.invalid" (click)="login()">Sign in</button>
+    <p *ngIf="error">
+        {{ error }}
+    </p>
 </form>
+<p>To <a [routerLink]="['/auth/register']">register</a></p>

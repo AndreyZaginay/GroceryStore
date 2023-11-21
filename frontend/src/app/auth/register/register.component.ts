@@ -1,7 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/firebase/auth.service';
+import { Router } from '@angular/router';
 
+import { AuthService } from 'src/app/services/firebase/auth.service';
 import { confirmPasswordValidator } from 'src/app/shared/validators/auth.validator';
 
 @Component({
@@ -10,18 +11,22 @@ import { confirmPasswordValidator } from 'src/app/shared/validators/auth.validat
   styleUrls: ['./register.component.scss']
 })
 
-export class RegisterComponent implements OnInit{
-  
-  registerForm!: FormGroup;
+export class RegisterComponent implements OnInit {
 
-  constructor(private readonly authService: AuthService) {}
+  private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
+  registerForm!: FormGroup;
+  error: string | undefined = undefined;
 
   ngOnInit(): void {
     this.initRegisterForm();
   }
 
   register(): void {
-    this.authService.signUp(this.registerForm.getRawValue());
+    this.authService.signUp(this.registerForm.getRawValue()).subscribe({
+      error: e => this.error = e.message,
+      complete: () => this.router.navigate(['/auth/login'])
+    });
   }
 
   initRegisterForm(): void {

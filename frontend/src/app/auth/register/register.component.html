@@ -3,4 +3,10 @@
     <input type="password" formControlName="password">
     <input type="password" formControlName="confirmPassword">
     <button [disabled]="registerForm.invalid" (click)="register()">Sign up</button>
+    <p *ngIf="error">
+        {{ error }}
+    </p>
 </form>
+<p>To 
+    <a [routerLink]="['/auth/login']">login page</a>
+</p>
