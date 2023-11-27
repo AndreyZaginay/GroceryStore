@@ -1,7 +1,7 @@
 import { Routes } from "@angular/router";
 
 import { DashboardComponent } from "./dashboard.component";
-import { authGuard } from "../shared/guards/auth.guard";
+import { authGuard, isAdminGuard } from "../shared/guards/auth.guard";
 
 export const routes: Routes = [
     {
@@ -15,7 +15,7 @@ export const routes: Routes = [
             {
                 path: 'admin-store',
                 loadChildren: () => import('./admin-store/admin-store.module').then(m => m.AdminStoreModule),
-                canActivate: [authGuard],
+                canActivate: [isAdminGuard],
             },
             {
                 path: 'profile',

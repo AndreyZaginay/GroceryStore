@@ -10,20 +10,18 @@ import { AuthService } from 'src/app/services/firebase/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
+
   loginForm!: FormGroup;
-  error: string | undefined = undefined;
+  error: string | undefined;
 
   ngOnInit(): void {
-    this.authService.signOut();
     this.initLoginForm();
   }
 
   login(): void {
-    this.authService.signIn(this.loginForm.getRawValue()).pipe(
-    ).subscribe({
+    this.authService.signIn(this.loginForm.getRawValue()).subscribe({
       error: e => this.error = e.message,
       complete: () => this.router.navigate([''])
     });
@@ -33,6 +31,6 @@ export class LoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
-    })
+    });
   }
 }

@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+
 import { AuthService } from '../services/firebase/auth.service';
 
 @Component({
@@ -7,6 +8,6 @@ import { AuthService } from '../services/firebase/auth.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-user$ = inject(AuthService).user$;
-
+  readonly user$ = inject(AuthService).user$;
+  readonly isUserAdmin$ = inject(AuthService).isAdmin();
 }

@@ -5,7 +5,7 @@
     <div class="navigation">
         <a class="link" routerLink="store" routerLinkActive="link--active">Store</a>
         <a *ngIf="user$ | async" class="link" routerLink="profile" routerLinkActive="link--active">Profile</a>
-        <a *ngIf="user$ | async" class="link" routerLink="admin-store" routerLinkActive="link--active">Admin-store</a>
+        <a *ngIf="isUserAdmin$ | async" class="link" routerLink="admin-store" routerLinkActive="link--active">Admin-store</a>
         <a *ngIf="!(user$ | async)" class="link" routerLink="/auth" routerLinkActive="link--active">Login</a>
     </div>
 </div>

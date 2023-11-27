@@ -4,6 +4,11 @@ import { map } from 'rxjs';
 
 import { AuthService } from 'src/app/services/firebase/auth.service';
 
+
 export const authGuard: CanActivateFn = () => {
   return inject(AuthService).user$.pipe(map(Boolean));
+};
+
+export const isAdminGuard: CanActivateFn = () => {
+  return inject(AuthService).isAdmin();
 };

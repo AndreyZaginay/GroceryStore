@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
   registerForm!: FormGroup;
-  error: string | undefined = undefined;
+  error: string | undefined;
 
   ngOnInit(): void {
     this.initRegisterForm();
