@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { routes } from './auth.routing';
 import { AuthComponent } from './auth.component';
@@ -15,6 +17,8 @@ import { UsersService } from '../services/users.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     RouterModule.forChild(routes)
   ],
   providers: [AuthService, UsersService]

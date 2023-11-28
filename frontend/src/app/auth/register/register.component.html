@@ -1,7 +1,23 @@
 <form action="" [formGroup]="registerForm">
-    <input type="text" formControlName="email">
-    <input type="password" formControlName="password">
-    <input type="password" formControlName="confirmPassword">
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="text" matInput placeholder="exemple@gmail.com" formControlName="email">
+        <mat-error *ngIf="registerFormEmail.hasError('email')">Wrong email</mat-error>
+        <mat-error *ngIf="registerFormEmail.hasError('required')">This fill is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password">
+        <mat-error *ngIf="registerFormPassword.hasError('minlength')">Min 8 symbols</mat-error>
+        <mat-error *ngIf="registerFormPassword.hasError('required')">This fill is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>ConfirmPassword</mat-label>
+        <input type="password" matInput formControlName="confirmPassword">
+        <mat-error *ngIf="registerFormConfirmPass.hasError('required')">This fill is required</mat-error>
+        <mat-error *ngIf="registerFormConfirmPass.hasError('minlength')">Unmatching passwords</mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="registerForm.hasError('confirmPassError')">Unmatching passwords</mat-error>   
     <button [disabled]="registerForm.invalid" (click)="register()">Sign up</button>
     <p *ngIf="error">
         {{ error }}
