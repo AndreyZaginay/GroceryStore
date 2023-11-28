@@ -2,7 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { UserRegisterCredentials } from 'src/app/entities/user';
 import { AuthService } from 'src/app/services/firebase/auth.service';
+import { UsersService } from 'src/app/services/users.service';
 import { confirmPasswordValidator } from 'src/app/shared/validators/auth.validator';
 
 @Component({
@@ -12,9 +14,10 @@ import { confirmPasswordValidator } from 'src/app/shared/validators/auth.validat
 })
 
 export class RegisterComponent implements OnInit {
-
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
+  private readonly usersService = inject(UsersService);
+  
   registerForm!: FormGroup;
   error: string | undefined;
 
@@ -23,9 +26,22 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-    this.authService.signUp(this.registerForm.getRawValue()).subscribe({
+    if (this.registerForm.invalid) {
+      return;
+    }
+    const newUser: UserRegisterCredentials = {
+      email: this.registerForm.getRawValue()['email'],
+      password: this.registerForm.getRawValue()['password']
+    };    
+    this.authService.signUp(newUser).pipe(
+    ).subscribe({ 
+      next: (user) => {
+        this.usersService.setUser(user.uid, { email: newUser.email })
+      },
       error: e => this.error = e.message,
-      complete: () => this.router.navigate(['/auth/login'])
+      complete: () => {
+        this.router.navigate(['/auth/login']);
+      }
     });
   }
 

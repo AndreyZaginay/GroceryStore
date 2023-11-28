@@ -1,11 +1,10 @@
 import { inject } from '@angular/core';
-import { addDoc, collection, deleteDoc, doc, Firestore, getDoc, getDocs, query, updateDoc, where } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, doc, Firestore, getDoc, getDocs, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { concatAll, from, map, Observable, toArray } from "rxjs";
 
 export interface FirestoreDocument {
   id: string;
 }
-
 export type AddFirestoreDocument<T extends FirestoreDocument> = Omit<T, 'id'>;
 export type UpdateFirestoreDocument<T extends FirestoreDocument> = Partial<AddFirestoreDocument<T>>;
 export type QueryFilterConstraint = ReturnType<typeof where>;
@@ -41,6 +40,11 @@ export abstract class BaseFirestoreService<T extends FirestoreDocument> {
     return from(addDoc(colRef, data)).pipe(
       map((docRef) => docRef.id)
     );
+  }
+
+  protected setDoc(path: string, id: string, data: AddFirestoreDocument<T>) {
+    const docRef = doc(this.firestore, path, id);
+    return from(setDoc(docRef, data));
   }
 
   protected updateDoc(path: string, data: UpdateFirestoreDocument<T>) {
