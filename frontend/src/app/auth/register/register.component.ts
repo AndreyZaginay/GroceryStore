@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
     this.authService.signUp(newUser).pipe(
     ).subscribe({ 
       next: (user) => {
-        this.usersService.setUser(user.uid, { email: newUser.email })
+        this.usersService.setUser(user.uid, { email: user.email as string })
       },
       error: e => this.error = e.message,
       complete: () => {
@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      confirmPassword: new FormControl('', [Validators.required])
-    }, confirmPasswordValidator)
+      confirmPassword: new FormControl('', [Validators.required, confirmPasswordValidator])
+    })
   }
 }

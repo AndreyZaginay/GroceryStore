@@ -15,9 +15,8 @@
         <mat-label>ConfirmPassword</mat-label>
         <input type="password" matInput formControlName="confirmPassword">
         <mat-error *ngIf="registerFormConfirmPass.hasError('required')">This fill is required</mat-error>
-        <mat-error *ngIf="registerFormConfirmPass.hasError('minlength')">Unmatching passwords</mat-error>
+        <mat-error *ngIf="registerFormConfirmPass.hasError('confirmPassError')">Unmatching passwords</mat-error>   
     </mat-form-field>
-    <mat-error *ngIf="registerForm.hasError('confirmPassError')">Unmatching passwords</mat-error>   
     <button [disabled]="registerForm.invalid" (click)="register()">Sign up</button>
     <p *ngIf="error">
         {{ error }}
