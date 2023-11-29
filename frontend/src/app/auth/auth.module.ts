@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 
 import { routes } from './auth.routing';
 import { AuthComponent } from './auth.component';
@@ -18,6 +19,7 @@ import { UsersService } from '../services/users.service';
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatButtonModule,
     MatInputModule,
     RouterModule.forChild(routes)
   ],

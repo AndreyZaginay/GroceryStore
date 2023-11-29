@@ -1,9 +1,15 @@
 <form action="" [formGroup]="loginForm">
-    <input type="text" formControlName="email">
-    <input type="password" formControlName="password">
-    <button [disabled]="loginForm.invalid" (click)="login()">Sign in</button>
-    <p *ngIf="error">
-        {{ error }}
-    </p>
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="text" matInput placeholder="exemple@gmail.com" formControlName="email">
+        <mat-error *ngIf="loginFormEmail.hasError('email') && loginFormEmail.dirty">Wrong email format</mat-error>
+        <mat-error *ngIf="loginFormEmail.hasError('required')">This fill is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="password">
+    </mat-form-field>
+    <mat-error *ngIf="error">Email or password are incorrect</mat-error>
+    <button mat-raised-button [disabled]="loginForm.invalid" (click)="login()">Sign in</button>
 </form>
 <p>To <a [routerLink]="['/auth/register']">register</a></p>
