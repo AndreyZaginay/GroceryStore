@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { addDoc, collection, deleteDoc, doc, Firestore, getDoc, getDocs, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, doc, docData, Firestore, getDoc, getDocs, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { concatAll, from, map, Observable, toArray } from "rxjs";
 
 export interface FirestoreDocument {
@@ -41,7 +41,7 @@ export abstract class BaseFirestoreService<T extends FirestoreDocument> {
       map((docRef) => docRef.id)
     );
   }
-
+  
   protected setDoc(path: string, id: string, data: AddFirestoreDocument<T>) {
     const docRef = doc(this.firestore, path, id);
     return from(setDoc(docRef, data));

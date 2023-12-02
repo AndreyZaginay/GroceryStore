@@ -1,23 +1,39 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, Subject, switchMap, takeUntil } from 'rxjs';
 
 import { AuthService } from 'src/app/services/firebase/auth.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit, OnDestroy{
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly usersServive = inject(UsersService);
+
+     subject = new Subject<void>()
+
+  userData$: Observable<any> = this.authService.user$.pipe(
+    switchMap(user => this.usersServive.getUserById(user!.uid))
+  )
 
   ngOnInit(): void {
-    // this.authService.user$.subscribe(console.log);
+    this.userData$.pipe(
+      takeUntil(this.subject)
+    ).subscribe(console.log)
   }
 
   signOut(): void {
     this.authService.signOut();
     this.router.navigate(['']);
+  }
+
+  ngOnDestroy(): void {
+    this.subject.next();
+    this.subject.complete();
   }
 }

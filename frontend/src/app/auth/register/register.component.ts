@@ -41,12 +41,8 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    const newUser: UserRegisterCredentials = {
-      email: this.registerForm.getRawValue()['email'],
-      password: this.registerForm.getRawValue()['password']
-    };    
-    this.authService.signUp(newUser).pipe(
-    ).subscribe({ 
+    const { confirmPassword, ...credentials } = this.registerForm.getRawValue();   
+    this.authService.signUp(credentials as UserRegisterCredentials).subscribe({ 
       next: (user) => {
         this.usersService.setUser(user.uid, { email: user.email as string })
       },

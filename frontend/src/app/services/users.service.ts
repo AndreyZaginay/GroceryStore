@@ -17,6 +17,10 @@ export class UsersService extends BaseFirestoreService<User> {
         return this.getDocs('users');
     }
 
+    getUserById(id: string) {
+        return this.getDoc(`users/${id}`);
+    }
+
     setUser(userId: string, data: AddUser ) {
         return this.setDoc('users', userId, data);
     }

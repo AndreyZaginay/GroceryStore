@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password') as FormControl;
   }
 
-
   loginForm!: FormGroup;
   error: string | undefined;
 
