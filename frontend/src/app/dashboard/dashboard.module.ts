@@ -6,6 +6,7 @@ import { routes } from './dashboard.routing';
 import { DashboardComponent } from './dashboard.component';
 import { UsersService } from '../services/users.service';
 import { AuthService } from '../services/firebase/auth.service';
+import { OrdersService } from '../services/orders.service';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -13,6 +14,6 @@ import { AuthService } from '../services/firebase/auth.service';
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  providers: [UsersService, AuthService]
+  providers: [UsersService, AuthService, OrdersService]
 })
 export class DashboardModule { }

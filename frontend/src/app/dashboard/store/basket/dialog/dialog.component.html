@@ -11,7 +11,7 @@
     <hr>
     <div class="bill-bottom">
         <p class="order-price">Order price: </p>
-        <div *ngIf="orderPrice$ | async as orderPrice">{{ orderPrice }}$</div>
-        <button (click)="closeDialog()">Buy</button>
+        <div *ngIf="orderPrice">{{ orderPrice }}$</div>
+        <button (click)="buy()">Buy</button>
     </div>
 </div>

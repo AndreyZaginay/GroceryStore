@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, of } from 'rxjs';
+import { Subject } from 'rxjs';
 
 import { Purchase } from 'src/app/entities/purchase';
 import { Product } from 'src/app/entities/product';
@@ -52,11 +52,7 @@ export class BasketService {
     this.purchasesSubject.next(purchases);
   }
 
-  sumUp(): Observable<number> {
-    let sum: number = 0;
-    this.purchases.forEach(({ count, product }) => {
-      sum += +count * +product.price;      
-    })
-    return of(sum);
+  sumUp(): number {
+    return this.purchases.reduce((acc, { count, product }) => acc + Number(count) * Number(product.price), 0);
   }
 }

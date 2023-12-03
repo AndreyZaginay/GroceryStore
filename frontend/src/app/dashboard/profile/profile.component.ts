@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject, switchMap, takeUntil } from 'rxjs';
 
+import { User } from 'src/app/entities/user';
 import { AuthService } from 'src/app/services/firebase/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -15,9 +16,9 @@ export class ProfileComponent implements OnInit, OnDestroy{
   private readonly router = inject(Router);
   private readonly usersServive = inject(UsersService);
 
-     subject = new Subject<void>()
+  private readonly subject = new Subject<void>();
 
-  userData$: Observable<any> = this.authService.user$.pipe(
+  userData$: Observable<User> = this.authService.user$.pipe(
     switchMap(user => this.usersServive.getUserById(user!.uid))
   )
 

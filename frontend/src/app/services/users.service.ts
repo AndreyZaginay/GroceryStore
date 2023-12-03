@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { map } from "rxjs";
 
 import { BaseFirestoreService } from "./firebase/firestore.service";
-import { AddUser, UpdateUser, User } from "../entities/user";
+import { AddUser, User } from "../entities/user";
 
 @Injectable()
 export class UsersService extends BaseFirestoreService<User> {
@@ -23,9 +23,5 @@ export class UsersService extends BaseFirestoreService<User> {
 
     setUser(userId: string, data: AddUser ) {
         return this.setDoc('users', userId, data);
-    }
-
-    updateUser(userId: string, data: UpdateUser) {
-        return this.updateDoc(userId, data);
     }
 }
