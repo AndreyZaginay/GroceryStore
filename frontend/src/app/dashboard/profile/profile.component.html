@@ -1,3 +1,8 @@
 <div>
     <button (click)="signOut()">Sign out</button>
 </div>
+<div *ngIf="userOrders$ | async as userOrders"> 
+    <div *ngFor="let order of userOrders">
+        {{ order.totalPrice }}
+    </div>
+</div>
