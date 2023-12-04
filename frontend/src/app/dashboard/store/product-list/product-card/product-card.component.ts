@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { BasketService } from '../../basket/basket.service';
-import { StorageService } from 'src/app/services/firebase/storage.service';
-import { Product } from 'src/app/entities/product';
+import { StorageService } from '@services/firebase/storage.service';
+import { Product } from '@entities/product';
 
 @Component({
   selector: 'app-product-card',

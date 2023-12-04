@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subject } from 'rxjs';
 
-import { Product } from 'src/app/entities/product';
-import { Purchase } from 'src/app/entities/purchase';
+import { Product } from '@entities/product';
+import { Purchase } from '@entities/purchase';
 import { BasketService } from './basket.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';

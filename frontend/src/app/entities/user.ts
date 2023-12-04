@@ -1,4 +1,4 @@
-import { AddFirestoreDocument, FirestoreDocument, UpdateFirestoreDocument } from "../services/firebase/firestore.service";
+import { AddFirestoreDocument, FirestoreDocument, UpdateFirestoreDocument } from "@services/firebase/firestore.service";
 
 export interface User extends FirestoreDocument {
     email: string;

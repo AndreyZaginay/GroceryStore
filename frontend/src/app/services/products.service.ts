@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AddProduct, Product, UpdateProduct} from "../entities/product";
+import { AddProduct, Product, UpdateProduct} from "@entities/product";
 import { BaseFirestoreService } from "./firebase/firestore.service";
 
 @Injectable()

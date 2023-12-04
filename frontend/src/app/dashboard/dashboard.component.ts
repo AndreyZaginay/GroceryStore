@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 
-import { AuthService } from '../services/firebase/auth.service';
+import { AuthService } from '@services/firebase/auth.service';
 
 @Component({
   selector: 'app-dashboard',

@@ -5,6 +5,7 @@
     "paths": {
       "@services/*": ["src/app/services/*"],
       "@entities/*": ["src/app/entities/*"],
+      "@validators/*": ["src/app/shared/validators/*"],
       
     },
     "baseUrl": "./",

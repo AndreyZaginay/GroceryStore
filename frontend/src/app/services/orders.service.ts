@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { BaseFirestoreService } from "./firebase/firestore.service";
-import { AddOrder, Order } from "../entities/order";
+import { AddOrder, Order } from "@entities/order";
 import { where } from "@angular/fire/firestore";
 
 @Injectable()

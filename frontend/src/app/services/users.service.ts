@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { map } from "rxjs";
 
 import { BaseFirestoreService } from "./firebase/firestore.service";
-import { AddUser, User } from "../entities/user";
+import { AddUser, User } from "@entities/user";
 
 @Injectable()
 export class UsersService extends BaseFirestoreService<User> {

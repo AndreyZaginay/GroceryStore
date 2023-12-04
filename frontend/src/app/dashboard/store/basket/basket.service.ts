@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { Purchase } from 'src/app/entities/purchase';
-import { Product } from 'src/app/entities/product';
+import { Purchase } from '@entities/purchase';
+import { Product } from '@entities/product';
 
 @Injectable({
   providedIn: 'root'

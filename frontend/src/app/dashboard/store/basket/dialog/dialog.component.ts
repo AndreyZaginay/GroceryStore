@@ -3,10 +3,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { EMPTY, Subject, switchMap, takeUntil } from 'rxjs';
 
 import { BasketService } from '../basket.service';
-import { Purchase } from 'src/app/entities/purchase';
-import { AuthService } from 'src/app/services/firebase/auth.service';
-import { AddOrder } from 'src/app/entities/order';
-import { OrdersService } from 'src/app/services/orders.service';
+import { Purchase } from '@entities/purchase';
+import { AuthService } from '@services/firebase/auth.service';
+import { AddOrder } from '@entities/order';
+import { OrdersService } from '@services/orders.service';
 
 @Component({
   selector: 'app-dialog',

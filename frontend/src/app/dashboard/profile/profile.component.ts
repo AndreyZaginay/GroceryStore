@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subject, switchMap } from 'rxjs';
+import { Observable, Subject, switchMap, takeUntil } from 'rxjs';
 
-import { Order } from 'src/app/entities/order';
+import { Order } from '@entities/order';
 import { AuthService } from '@services/firebase/auth.service';
 import { OrdersService } from '@services/orders.service';
 
@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.userOrders$ = this.authService.user$.pipe(
+      takeUntil(this.subject),
       switchMap(user => this.ordersServive.getUserOrders(user!.uid)),
     );
   }

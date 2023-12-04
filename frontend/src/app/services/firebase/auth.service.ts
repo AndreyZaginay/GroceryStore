@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, user, signOut } from '@angular/fire/auth';
 import { combineLatest, from, map } from 'rxjs';
+
 import { UsersService } from '../users.service';
 
 @Injectable({

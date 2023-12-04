@@ -10,8 +10,8 @@ import { routes } from './auth.routing';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthService } from '../services/firebase/auth.service';
-import { UsersService } from '../services/users.service';
+import { AuthService } from '@services/firebase/auth.service';
+import { UsersService } from '@services/users.service';
 
 @NgModule({
   declarations: [AuthComponent, LoginComponent, RegisterComponent],

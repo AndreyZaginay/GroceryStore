@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 
-import { ProductsService } from '../../../services/products.service';
-import { Product } from 'src/app/entities/product';
+import { ProductsService } from '@services/products.service';
+import { Product } from '@entities/product';
 
 @Component({
   selector: 'app-product-list',
