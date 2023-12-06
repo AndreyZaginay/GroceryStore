@@ -15,13 +15,12 @@
         <mat-label>ConfirmPassword</mat-label>
         <input type="password" matInput formControlName="confirmPassword">
         <mat-error *ngIf="registerFormConfirmPass.hasError('required')">This fill is required</mat-error>
-        <mat-error *ngIf="registerFormConfirmPass.hasError('confirmPassError')">Unmatching passwords</mat-error>   
+        <mat-error *ngIf="registerFormConfirmPass.hasError('confirmPassError') && registerFormConfirmPass.value">Unmatching passwords</mat-error>   
     </mat-form-field>
     <button mat-raised-button [disabled]="registerForm.invalid" (click)="register()">Sign up</button>
     <p *ngIf="error">
         {{ error }}
     </p>
 </form>
-<p>To 
-    <a [routerLink]="['/auth/login']">login page</a>
-</p>
+<a [routerLink]="['/auth/login']">To login page</a>
+<a [routerLink]="['']">Back to main page</a>

@@ -4,7 +4,7 @@ export interface Order extends FirestoreDocument {
     totalPrice: number;
     date: string;
     userId: string;
-    products:    {
+    products:   {
         productId: string;
         count: number;
     }[]

@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit, OnDestroy{
   private readonly ordersServive = inject(OrdersService);
 
   private readonly subject = new Subject<void>();
+  readonly user$ = this.authService.user$;
   userOrders$!: Observable<Order[]>;
 
   ngOnInit(): void {

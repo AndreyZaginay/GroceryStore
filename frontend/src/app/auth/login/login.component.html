@@ -12,4 +12,5 @@
     <mat-error *ngIf="error">Email or password are incorrect</mat-error>
     <button mat-raised-button [disabled]="loginForm.invalid" (click)="login()">Sign in</button>
 </form>
-<p>To <a [routerLink]="['/auth/register']">register</a></p>
+<a [routerLink]="['/auth/register']">To register</a>
+<a [routerLink]="['']">Back to main page</a>

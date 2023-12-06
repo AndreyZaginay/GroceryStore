@@ -13,3 +13,11 @@ form {
     display: flex;
     flex-direction: column;
 }
+
+a {
+    text-decoration: none;
+    @include mix.link-transition(color);
+    &:hover {
+        color: lightcoral;
+    }
+}
