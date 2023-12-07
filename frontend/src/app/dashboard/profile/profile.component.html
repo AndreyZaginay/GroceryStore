@@ -1,40 +1,33 @@
 <div class="profile-wrapper">
     <div class="user-info" *ngIf="user$ | async as user">
         <div>
-            <p>{{ user.email }}</p>
-            <button mat-button (click)="signOut()">Sign out</button>
+          <div>User email: &nbsp;{{ user.email }}</div>
+          <button mat-raised-button (click)="signOut()">Sign out</button>
         </div>
     </div>
     <div class="user-orders">
         <p>Your order history</p>
         <cdk-accordion class="accordion" *ngIf="userOrders$ | async as userOrders"> 
-            @for (order of userOrders; track order; let index = $index) {
-                <cdk-accordion-item
-                  #accordionItem="cdkAccordionItem"
-                  class="example-accordion-item"
-                  role="button"
-                  tabindex="0"
-                  [attr.id]="'accordion-header-' + index"
-                  [attr.aria-expanded]="accordionItem.expanded"
-                  [attr.aria-controls]="'accordion-body-' + index">
-                  <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
-                    {{ order.date }} {{ order.totalPrice }}
-                    <span class="example-accordion-item-description">
-                      Click to {{ accordionItem.expanded ? 'close' : 'open' }}
-                    </span>
-                  </div>
-                  <div
-                    class="example-accordion-item-body"
-                    role="region"
-                    [style.display]="accordionItem.expanded ? '' : 'none'"
-                    [attr.id]="'accordion-body-' + index"
-                    [attr.aria-labelledby]="'accordion-header-' + index">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
-                    excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis
-                    veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa?
-                  </div>
-                </cdk-accordion-item>
-            }
+          @for (order of userOrders; track order; let index = $index) {
+            <cdk-accordion-item
+              #accordionItem="cdkAccordionItem">
+              <div  
+                (click)="accordionItem.toggle()"            
+                class="accordion-item-head"
+                [ngClass]="accordionItem.expanded ? 'active' : ''"
+                >
+                <div>{{order.date}}</div>
+                <div>
+                  Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+                </div>
+              </div>
+              <div
+                class="accordion-item-body"
+                [ngClass]="accordionItem.expanded ? 'open' : 'close'">
+                {{ order.totalPrice }}
+              </div>
+            </cdk-accordion-item>
+          }
         </cdk-accordion>
     </div>
 </div>
