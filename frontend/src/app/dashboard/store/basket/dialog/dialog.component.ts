@@ -35,7 +35,7 @@ export class DialogComponent implements OnInit , OnDestroy{
          this.closeDialog();
          return EMPTY;
         }
-        const ordereProducts = this.purchases.map(({count, product}) => ({productId: product.id, count: count }));
+        const ordereProducts = this.purchases.map(({count, product}) => ({ name: product.name, count: count }));
         const newOrder: AddOrder = { 
           products: ordereProducts, 
           totalPrice: this.orderPrice, 

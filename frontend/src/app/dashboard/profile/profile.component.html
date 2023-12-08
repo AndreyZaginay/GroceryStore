@@ -8,7 +8,7 @@
     <div class="user-orders">
         <p>Your order history</p>
         <cdk-accordion class="accordion" *ngIf="userOrders$ | async as userOrders"> 
-          @for (order of userOrders; track order; let index = $index) {
+          @for (order of userOrders; track order) {
             <cdk-accordion-item
               #accordionItem="cdkAccordionItem">
               <div  
@@ -24,9 +24,19 @@
               <div
                 class="accordion-item-body"
                 [ngClass]="accordionItem.expanded ? 'open' : 'close'">
-                {{ order.totalPrice }}
+                @for (product of order.products; track product) {
+                  <div class="product-list">
+                    <div>{{ product.name }}: </div>
+                    <div>{{ product.count }}</div>
+                  </div>
+                  <hr>
+                }
+                <p>Order price: &nbsp;{{ order.totalPrice }}$</p>
               </div>
             </cdk-accordion-item>
+          }
+          @empty {
+            <p>Empty list of orders</p>
           }
         </cdk-accordion>
     </div>

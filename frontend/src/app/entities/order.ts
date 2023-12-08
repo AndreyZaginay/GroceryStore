@@ -5,7 +5,7 @@ export interface Order extends FirestoreDocument {
     date: string;
     userId: string;
     products:   {
-        productId: string;
+        name: string;
         count: number;
     }[]
 }

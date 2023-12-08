@@ -40,9 +40,7 @@
     padding: 0 18px;
     background-color: rgb(246, 246, 246);
     overflow: hidden;
-    border: 1px solid gray;
     border-radius: 4px;
-    transition: all .8s ease-out;
 }
 
 .active, .accordion-item-head:hover {
@@ -50,9 +48,18 @@
 }
   
 .open {
-    height: 70px;
+    border: 1px solid gray;
+    max-height: 500px;
+    overflow-y: hidden;
+    transition: max-height 0.25s ease-in;
 }
 
 .close {
-    height: 0px;
+    max-height: 0;
+    transition: max-height .1s ease-in-out;
+}
+
+.product-list {
+    display: flex;
+    justify-content: space-between;
 }
