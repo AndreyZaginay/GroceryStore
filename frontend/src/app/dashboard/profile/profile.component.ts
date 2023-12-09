@@ -22,8 +22,8 @@ export class ProfileComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.userOrders$ = this.authService.user$.pipe(
-      takeUntil(this.subject),
       switchMap(user => this.ordersService.getUserOrders(user!.uid)),
+      takeUntil(this.subject),
     );
   }
 
