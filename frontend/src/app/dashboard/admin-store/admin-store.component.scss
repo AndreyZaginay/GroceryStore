@@ -1,0 +1,11 @@
+@use 'variables' as var;
+@use 'mixins' as mix;
+
+.admin-dashboard {
+    height: 100%;
+    background-color: var.$ligth-blue;
+}
+
+.admin-navigation {
+    @include mix.link();
+}

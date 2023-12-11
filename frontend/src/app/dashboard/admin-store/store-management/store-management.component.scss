@@ -1,0 +1,6 @@
+@use 'variables' as var;
+
+:host {
+    height: 100%;
+    background: var.$ligth-blue;
+}

@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Storage, getDownloadURL, ref } from '@angular/fire/storage';
+import { Storage, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
 import { from } from 'rxjs';
 
 @Injectable({
@@ -10,5 +10,13 @@ export class StorageService {
   
   getProductImg(productName: string) {
     return from(getDownloadURL(ref(this.storage, productName + '.jpg')));
+  }
+
+  uploadProductImg(file: File) {
+    const metadata = {
+      contentType: 'image/jpeg'
+    }
+    const storageRef = ref(this.storage, file.name);
+    return from(uploadBytes(storageRef, file, metadata));
   }
 }
