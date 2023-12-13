@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { ProductsService } from '@services/products.service';
+import { ProductCategoriesService } from '@services/productCategories.service';
 import { routes } from './store.routing';
 import { StoreComponent } from './store.component';
 import { BasketComponent } from './basket/basket.component';
@@ -25,7 +26,8 @@ import { ProductCardComponent } from './product-list/product-card/product-card.c
     RouterModule.forChild(routes)
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    ProductCategoriesService
   ]
 })
 export class StoreModule { }

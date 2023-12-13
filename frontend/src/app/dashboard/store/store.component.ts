@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { ProductCategory } from '@entities/productCategory';
+import { ProductCategoriesService } from '@services/productCategories.service';
 
 @Component({
   selector: 'app-store',
@@ -6,5 +10,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./store.component.scss']
 })
 export class StoreComponent {
-  readonly productsCategory: string[] = ['dairy', 'meat', 'bakery', 'grocery', 'sweets', 'fish', 'alcohol', 'drinks', 'household chemicals'];
+
+  private readonly productsCategoriesService = inject(ProductCategoriesService);
+
+  readonly productsCategories$: Observable<ProductCategory[]> = this.productsCategoriesService.getProductsCategories();
+
 }
