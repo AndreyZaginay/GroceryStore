@@ -2,4 +2,22 @@
 
 .store-management {
     height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.products-management {
+    width: 50%;
+    height: 100%;
+}
+
+.add-product {
+    width: 50%;
+    height: 100%;
+}
+
+.drag-and-drop {
+    height: 200px;
+    width: 300px;
+    background: whitesmoke;
 }
