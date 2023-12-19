@@ -1,23 +1,8 @@
 @use 'variables' as var;
+@use 'mixins' as mix;
 
 .store-management {
     height: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.products-management {
-    width: 50%;
-    height: 100%;
-}
-
-.add-product {
-    width: 50%;
-    height: 100%;
-}
-
-.drag-and-drop {
-    height: 200px;
-    width: 300px;
-    background: whitesmoke;
+    @include mix.grid-auto-rows(none, none, 20% 80%);
+    @include mix.side-nav;
 }

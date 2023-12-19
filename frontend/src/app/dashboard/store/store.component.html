@@ -1,7 +1,7 @@
 <div class="store">
-        <div class="products-category" *ngIf="productsCategories$ | async as productsCategories"> 
-            <a class="product-category" routerLinkActive="product-category--active" *ngFor="let category of productsCategories" [routerLink]="[category.name]">
-                 {{ category.name }}
+        <div class="side-links" *ngIf="productsCategories$ | async as productsCategories"> 
+            <a class="side-link" routerLinkActive="side-link--active" *ngFor="let category of productsCategories" [routerLink]="[category.name]">
+                {{ category.name }}
             </a>
          </div> 
     <div>

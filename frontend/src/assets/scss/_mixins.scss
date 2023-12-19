@@ -57,7 +57,41 @@
     &--active {
         color: var.$dark-purple;
     }
+  }
 }
+
+@mixin side-nav {
+    .side-links {
+        @include grid-auto-rows(40px);
+        padding-top: 10px;
+        overflow-y: auto;
+        gap: 10px;
+        
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    
+    .side-link {
+        @include flex-center;
+        @include border-radius(5px);
+        padding: 20px;
+        border: 1px solid lightgray;
+        background: var.$pink;
+        text-transform: uppercase;
+        text-decoration: none;
+        width: 200px;
+        cursor: pointer;
+        @include link-transition(transform);
+    
+        &--active {
+            transform: translateX(20px);
+        }
+        
+        &:hover {
+            transform: translateX(20px);
+        }
+    }
 }
 
 @mixin height100() {
