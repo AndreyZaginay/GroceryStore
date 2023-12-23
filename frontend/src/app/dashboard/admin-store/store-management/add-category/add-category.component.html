@@ -1,0 +1,7 @@
+<form class="category-form" action="" [formGroup]="categoryForm">
+    <mat-form-field appearance="outline">
+        <mat-label>Category name</mat-label>
+        <input type="text" matInput formControlName="category">
+    </mat-form-field>
+    <button (click)="addCategory()" mat-button>Add category</button>
+</form>

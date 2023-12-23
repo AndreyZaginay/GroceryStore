@@ -10,6 +10,11 @@ export class ProductCategoriesService extends BaseFirestoreService<ProductCatego
     return this.getDocs('productCategories');
   }
 
+  addCategoryCollection(category: string) {
+    const requiredElement = { name: 'required' };
+    return this.addDoc(category, requiredElement);
+  }
+ 
   addProductCategory(newCategory: AddProductCategory) {
     return this.addDoc('productCategory', newCategory);
   }

@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { StoreManagementComponent } from './store-management.component';
 import { ProductCategoriesService } from '@services/productCategories.service';
 import { ProductsService } from '@services/products.service';
-import { DragAndDropDirective } from '@directives/drag-and-drop.directive';
 
 const routes: Routes = [
   {
@@ -19,6 +18,10 @@ const routes: Routes = [
       {
         path: 'add-product',
         loadComponent: () => import ('./add-product/add-product.component').then(mod => mod.AddProductComponent)
+      },
+      {
+        path: 'add-category',
+        loadComponent: () => import ('./add-category/add-category.component').then(mod => mod.AddCategoryComponent)
       }
     ]
   },

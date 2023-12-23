@@ -26,6 +26,7 @@ export class ProductManagementComponent {
 
   readonly productCategories$: Observable<ProductCategory[]> = this.productsCategoriesService.getProductsCategories();
   products$!: Observable<Product[]>;
+  
   getProducts(event: MatSelectChange): void {
     this.products$ = this.productsService.getProducts(event.value);
   }  
