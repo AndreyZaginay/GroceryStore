@@ -7,7 +7,6 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { ProductCategoriesService } from '@services/productCategories.service';
 import { switchMap } from 'rxjs';
-import { ProductsService } from '@services/products.service';
 
 @Component({
   selector: 'app-add-category',
@@ -24,7 +23,6 @@ import { ProductsService } from '@services/products.service';
 })
 export class AddCategoryComponent implements OnInit {
   private readonly productsCategoriesService = inject(ProductCategoriesService);
-  private readonly productService = inject(ProductsService);
 
   categoryForm!: FormGroup;
 
@@ -37,6 +35,14 @@ export class AddCategoryComponent implements OnInit {
       return;
     }
     const { category } = this.categoryForm.getRawValue();
+    this.productsCategoriesService.addCategoryCollection(category).pipe(
+      switchMap(() => {
+        return this.productsCategoriesService.addProductCategory({ name: category })
+      })
+    ).subscribe({
+      error: (e) => console.log(e.message),
+      complete: () => console.log('done')
+    })
   }
 
   initCategoryForm() {

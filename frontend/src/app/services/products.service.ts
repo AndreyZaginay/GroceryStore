@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { concatAll, filter, toArray } from 'rxjs';
 
 import { AddProduct, Product, UpdateProduct} from "@entities/product";
 import { BaseFirestoreService } from "./firebase/firestore.service";
@@ -7,22 +8,26 @@ import { BaseFirestoreService } from "./firebase/firestore.service";
 export class ProductsService extends BaseFirestoreService<Product> {
 
   getProducts(category: string) {
-    return this.getDocs(category);
+    return this.getDocs(`store/${category}/products`).pipe(
+      concatAll(),
+      filter((product: Product) => product.name !== 'required element'),
+      toArray()
+    );
   }
 
-  getProduct(categoryWithId: string) {
-    return this.getDoc(categoryWithId);
+  getProduct(category: string, id: string) {
+    return this.getDoc(`store/${category}/products/${id}`);
   }
 
   addProduct(category: string, data: AddProduct) {
-    return this.addDoc(category, data);
+    return this.addDoc(`store/${category}/products`, data);
   }
 
-  updateProduct(categoryWithId: string, data: UpdateProduct) {
-    return this.updateDoc(categoryWithId, data);
+  updateProduct(category: string, id: string, data: UpdateProduct) {
+    return this.updateDoc(`store/${category}/products/${id}`, data);
   }
 
-  deleteProduct(categoryWithId: string) {
-    return this.deleteDoc(categoryWithId);
+  deleteProduct(category: string, id: string) {
+    return this.deleteDoc(`store/${category}/products/${id}`);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 
 import { ProductsService } from '@services/products.service';
 import { Product } from '@entities/product';
@@ -19,6 +19,8 @@ export class ProductListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-   this.products$ = this.route.params.pipe(switchMap((params) => this.productsService.getProducts(params['category'])));
+   this.products$ = this.route.params.pipe(
+    switchMap((params) => this.productsService.getProducts(params['category']).pipe(
+   )));
   }
 }
