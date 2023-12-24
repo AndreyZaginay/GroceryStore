@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { Observable } from 'rxjs';  
+import { Router } from '@angular/router';
 
 import { DragAndDropDirective } from '@directives/drag-and-drop.directive';
 import { ProductCategory } from '@entities/productCategory';
@@ -48,7 +49,6 @@ export class AddProductComponent implements OnInit {
     const dataTransfer = new DataTransfer;
     dataTransfer.items.add(file); 
     this.fileInput.nativeElement.files = dataTransfer.files;
-    console.log(file);
     this.setUpFile(file);
   }
 

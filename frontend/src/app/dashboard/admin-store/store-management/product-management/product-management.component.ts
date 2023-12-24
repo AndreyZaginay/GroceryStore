@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 import { ProductCategory } from '@entities/productCategory';
 import { Product } from '@entities/product';  
@@ -14,6 +17,9 @@ import { ProductsService } from '@services/products.service';
   imports: [
     MatSelectModule,
     MatFormFieldModule,
+    MatButtonModule,
+    CdkAccordionModule,
+    MatInputModule,
     CommonModule
   ],
   selector: 'app-product-management',

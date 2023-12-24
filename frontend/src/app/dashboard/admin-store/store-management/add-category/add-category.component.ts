@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 import { ProductCategoriesService } from '@services/productCategories.service';
 import { switchMap } from 'rxjs';
@@ -23,6 +24,7 @@ import { switchMap } from 'rxjs';
 })
 export class AddCategoryComponent implements OnInit {
   private readonly productsCategoriesService = inject(ProductCategoriesService);
+  private readonly router = inject(Router);
 
   categoryForm!: FormGroup;
 
@@ -37,11 +39,11 @@ export class AddCategoryComponent implements OnInit {
     const { category } = this.categoryForm.getRawValue();
     this.productsCategoriesService.addCategoryCollection(category).pipe(
       switchMap(() => {
-        return this.productsCategoriesService.addProductCategory({ name: category })
+        return this.productsCategoriesService.addProductCategory({ name: category });
       })
     ).subscribe({
       error: (e) => console.log(e.message),
-      complete: () => console.log('done')
+      complete: () => this.router.navigate(['dashboard/admin-store/store-management/add-product'])
     })
   }
 

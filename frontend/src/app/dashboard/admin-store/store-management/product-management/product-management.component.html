@@ -1,17 +1,37 @@
-<div class="store-management">
-    <div class="products-management">
-        <mat-form-field *ngIf="productCategories$ | async as productCategories">
-          <mat-label>Select category</mat-label>
-            <mat-select (selectionChange)="getProducts($event)">
-              @for (category of productCategories; track category) {
-                <mat-option [value]="category.name">{{ category.name }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
-          <div *ngIf="products$ | async as products">
-            @for (product of products; track product) {
-              <div>{{ product.name }}</div>
-            }
-          </div>
-    </div>
+<div class="select-wrapper">
+  <mat-form-field *ngIf="productCategories$ | async as productCategories">
+    <mat-label>Select category</mat-label>
+      <mat-select (selectionChange)="getProducts($event)">
+        @for (category of productCategories; track category) {
+          <mat-option [value]="category.name">{{ category.name }}</mat-option>
+        }
+    </mat-select>
+  </mat-form-field>
 </div>
+<cdk-accordion class="accordion" *ngIf="products$ | async as products">
+  @for (product of products; track product) {
+    <cdk-accordion-item
+      #accordionItem="cdkAccordionItem"
+    >
+      <div class="product"            
+        [ngClass]="accordionItem.expanded ? 'active' : ''"
+        >
+        <div class="product__name">Product name: {{ product.name }}</div>
+        <div>Product price for one <span class="measurement">{{ product.measurement }}</span></div>
+        <div class="buttons">
+          <button mat-raised-button>Delete</button>
+          <button mat-raised-button (click)="accordionItem.toggle()">
+            {{ accordionItem.expanded ? 'Close' : 'Upadate' }}
+          </button>
+        </div>
+      </div>
+      <div
+        class="accordion-item-body"
+        [ngClass]="accordionItem.expanded ? 'open' : 'close'"
+        >
+          <input type="number" matInput>
+        <button mat-raised-button>Save</button>
+      </div>
+    </cdk-accordion-item>
+  }
+</cdk-accordion>
