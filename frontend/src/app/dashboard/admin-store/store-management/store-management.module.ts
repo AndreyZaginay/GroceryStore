@@ -22,6 +22,11 @@ const routes: Routes = [
       {
         path: 'add-category',
         loadComponent: () => import ('./add-category/add-category.component').then(mod => mod.AddCategoryComponent)
+      },
+      {
+        path: '',
+        pathMatch: 'prefix',
+        redirectTo: 'product-management'
       }
     ]
   },

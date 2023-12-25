@@ -1,7 +1,7 @@
 <div class="select-wrapper">
   <mat-form-field *ngIf="productCategories$ | async as productCategories">
     <mat-label>Select category</mat-label>
-      <mat-select (selectionChange)="getProducts($event)">
+      <mat-select [(ngModel)]="categoryName" (selectionChange)="getProducts($event)">
         @for (category of productCategories; track category) {
           <mat-option [value]="category.name">{{ category.name }}</mat-option>
         }
@@ -13,11 +13,12 @@
     <cdk-accordion-item
       #accordionItem="cdkAccordionItem"
     >
-      <div class="product"            
-        [ngClass]="accordionItem.expanded ? 'active' : ''"
-        >
-        <div class="product__name">Product name: {{ product.name }}</div>
-        <div>Product price for one <span class="measurement">{{ product.measurement }}</span></div>
+      <div class="product">
+        <div class="product__name">
+          Product name:
+          <div>{{ product.name }}</div>
+        </div>
+        <div>Product price for one <span class="measurement">{{ product.measurement }}</span>: &nbsp;{{ product.price }}$</div>
         <div class="buttons">
           <button mat-raised-button>Delete</button>
           <button mat-raised-button (click)="accordionItem.toggle()">
@@ -29,8 +30,15 @@
         class="accordion-item-body"
         [ngClass]="accordionItem.expanded ? 'open' : 'close'"
         >
-          <input type="number" matInput>
-        <button mat-raised-button>Save</button>
+        <form action="" [formGroup]="updateProductForm">
+          <div>Enter new price</div>
+          <mat-form-field>
+            <input #priceInput type="number" matInput formControlName="newPrice">
+            <mat-error *ngIf="productFromPrice.hasError('required')">This fill is required</mat-error>
+            <mat-error *ngIf="productFromPrice.hasError('productPrice')">Null or less</mat-error>
+          </mat-form-field>
+          <button type="submit" (click)="saveChanges(product.id)" mat-raised-button [disabled]="updateProductForm.invalid">Save</button>
+        </form>
       </div>
     </cdk-accordion-item>
   }

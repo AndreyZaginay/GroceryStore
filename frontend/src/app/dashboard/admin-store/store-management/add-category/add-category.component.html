@@ -3,5 +3,5 @@
         <mat-label>Category name</mat-label>
         <input type="text" matInput formControlName="category">
     </mat-form-field>
-    <button (click)="addCategory()" mat-raised-button>Add category</button>
+    <button (click)="addCategory()" [disabled]="categoryForm.invalid" mat-raised-button>Add category</button>
 </form>

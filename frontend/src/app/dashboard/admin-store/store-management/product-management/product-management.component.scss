@@ -9,32 +9,52 @@
 }
 
 .accordion {
+    padding: 0 10px;
     height: 100%;
-    width: 60%;
+    width: 100%;
 }
 
 .product {
     display: grid;
-    grid-template-columns: 20% 45% 35%;
+    grid-template-columns: 40% 30% 30%;
     align-items: center;
+    text-align: center;
     background: var.$pink;
     border: 1px solid gray;
     border-radius: 4px;
-    text-align: center;
+
+    &__name {
+        display: flex;
+        padding: 0 5px;
+        justify-content: space-between;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-around;
+    }
 }
 
 .accordion-item-body {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    width: 100%;
     padding: 0 18px;
-    background-color: rgb(246, 246, 246);
+    background-color: lightgrey;
     overflow: hidden;
     border-radius: 4px;
+
+    form {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    } 
 }
 
 .open {
-    height: 75px;
+    height: 110px;
     transition: height 0.25s ease-in;
 }
 

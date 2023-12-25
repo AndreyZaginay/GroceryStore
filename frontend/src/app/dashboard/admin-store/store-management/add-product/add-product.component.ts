@@ -6,7 +6,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { Observable } from 'rxjs';  
-import { Router } from '@angular/router';
 
 import { DragAndDropDirective } from '@directives/drag-and-drop.directive';
 import { ProductCategory } from '@entities/productCategory';
@@ -60,7 +59,7 @@ export class AddProductComponent implements OnInit {
     this.productForm = new FormGroup({
       category: new FormControl(null, Validators.required),
       productName: new FormControl('', Validators.required),
-      price: new FormControl(0, Validators.required),
+      price: new FormControl( null, Validators.required),
       measurement: new FormControl(null, Validators.required),  
       image: new FormControl('', Validators.required)
     })
