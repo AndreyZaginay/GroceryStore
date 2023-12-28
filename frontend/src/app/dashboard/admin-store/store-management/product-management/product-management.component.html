@@ -1,7 +1,7 @@
 <div class="select-wrapper">
   <mat-form-field *ngIf="productCategories$ | async as productCategories">
     <mat-label>Select category</mat-label>
-      <mat-select [(ngModel)]="categoryName" (selectionChange)="getProducts($event)">
+      <mat-select [(ngModel)]="selectedCategory" (selectionChange)="getProducts($event)">
         @for (category of productCategories; track category) {
           <mat-option [value]="category.name">{{ category.name }}</mat-option>
         }
@@ -35,7 +35,7 @@
           <mat-form-field>
             <input #priceInput type="number" matInput formControlName="newPrice">
             <mat-error *ngIf="productFromPrice.hasError('required')">This fill is required</mat-error>
-            <mat-error *ngIf="productFromPrice.hasError('productPrice')">Null or less</mat-error>
+            <mat-error *ngIf="productFromPrice.hasError('productPrice') && productFromPrice.dirty">Null or less</mat-error>
           </mat-form-field>
           <button type="submit" (click)="saveChanges(product.id)" mat-raised-button [disabled]="updateProductForm.invalid">Save</button>
         </form>

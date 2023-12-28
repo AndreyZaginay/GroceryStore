@@ -9,7 +9,7 @@
 .admin-navigation {
     height: 5%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     padding: 10px;
     @include mix.link();
