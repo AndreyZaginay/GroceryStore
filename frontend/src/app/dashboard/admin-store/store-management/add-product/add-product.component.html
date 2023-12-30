@@ -15,11 +15,14 @@
     <mat-label>Price</mat-label>
     <input type="number" matInput formControlName="price">
   </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Measurement</mat-label>
-    <input type="text" matInput formControlName="measurement">
-  </mat-form-field>
-  <div class="drag-and-drop" appDragAndDrop (dropFile)="dragFile($event)"></div>
+  <mat-radio-group formControlName="measurement">
+    <mat-label>Measurement:&nbsp;</mat-label>
+    <mat-radio-button class="example-margin" value="kg">kg</mat-radio-button>
+    <mat-radio-button class="example-margin" value="unit">unit</mat-radio-button>
+  </mat-radio-group>
+  <div class="drag-and-drop" appDragAndDrop (dropFile)="dragFile($event)">
+    <img *ngIf="productFormImg.value" #fileImg alt="">
+  </div>
   <input (change)="selectFile($event)" #fileInput type="file" accept="image/jpeg">
   <button mat-raised-button [disabled]="productForm.invalid" (click)="addProduct()">Add product</button>
 </form>

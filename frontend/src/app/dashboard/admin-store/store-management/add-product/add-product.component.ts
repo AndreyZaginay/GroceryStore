@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
 import { Observable } from 'rxjs';  
 
 import { DragAndDropDirective } from '@directives/drag-and-drop.directive';
@@ -21,6 +22,7 @@ import { ProductCategoriesService } from '@services/productCategories.service';
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    MatRadioModule,
     CommonModule
   ],
   templateUrl: './add-product.component.html',
@@ -30,9 +32,17 @@ export class AddProductComponent implements OnInit {
   private readonly productsCategoriesService = inject(ProductCategoriesService);
 
   readonly productCategories$: Observable<ProductCategory[]> = this.productsCategoriesService.getProductsCategories();
+  productImgUrl: string | undefined;
+
+  get productFormImg(): AbstractControl {
+    return this.productForm.get('image') as FormControl;
+  }
 
   @ViewChild('fileInput')
   readonly fileInput!: ElementRef<HTMLInputElement>;
+
+  @ViewChild('fileImg')
+  readonly fileImg!: ElementRef<HTMLImageElement>;
 
   productForm!: FormGroup;
 
@@ -47,12 +57,23 @@ export class AddProductComponent implements OnInit {
   dragFile(file: File) {
     const dataTransfer = new DataTransfer;
     dataTransfer.items.add(file); 
-    this.fileInput.nativeElement.files = dataTransfer.files;
+    this.fileInput.nativeElement.files = dataTransfer.files;    
     this.setUpFile(file);
+  }
+
+  displayFileImg() {
+    const file = this.productFormImg.value;
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => { 
+      this.fileImg.nativeElement.src = reader.result as string;       
+    }
+    reader.readAsDataURL(file); 
   }
 
   setUpFile(file: File) {
     this.productForm.patchValue({ image: file });
+    this.displayFileImg();
   }
 
   initProductForm() {
