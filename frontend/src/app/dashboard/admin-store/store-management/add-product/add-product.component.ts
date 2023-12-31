@@ -6,11 +6,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
-import { Observable } from 'rxjs';  
+import { Observable, switchMap } from 'rxjs';  
 
 import { DragAndDropDirective } from '@directives/drag-and-drop.directive';
 import { ProductCategory } from '@entities/productCategory';
 import { ProductCategoriesService } from '@services/productCategories.service';
+import { StorageService } from '@services/firebase/storage.service';
+import { ProductsService } from '@services/products.service';
 
 @Component({
   selector: 'app-add-product',
@@ -30,6 +32,8 @@ import { ProductCategoriesService } from '@services/productCategories.service';
 })
 export class AddProductComponent implements OnInit {
   private readonly productsCategoriesService = inject(ProductCategoriesService);
+  private readonly productsService = inject(ProductsService);
+  private readonly storageService = inject(StorageService);
 
   readonly productCategories$: Observable<ProductCategory[]> = this.productsCategoriesService.getProductsCategories();
   productImgUrl: string | undefined;
@@ -79,7 +83,7 @@ export class AddProductComponent implements OnInit {
   initProductForm() {
     this.productForm = new FormGroup({
       category: new FormControl(null, Validators.required),
-      productName: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
       price: new FormControl( null, Validators.required),
       measurement: new FormControl(null, Validators.required),  
       image: new FormControl('', Validators.required)
@@ -90,7 +94,14 @@ export class AddProductComponent implements OnInit {
     if(this.productForm.invalid) {
       return;
     }
-    console.log(
-    this.productForm.getRawValue());
+    const { image, category, ...product } = this.productForm.getRawValue();
+    const productImg = new File([ image ], `${ product.name }.jpg`);
+    this.storageService.uploadProductImg(productImg).pipe(
+      switchMap(() => this.productsService.addProduct(category, product))
+    ).subscribe({
+      complete: () => {
+        console.log('done');
+      }
+    });
   }
 }

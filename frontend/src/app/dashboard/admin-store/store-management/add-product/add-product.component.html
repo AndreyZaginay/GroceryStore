@@ -1,28 +1,36 @@
 <form class="product-form" action="" [formGroup]="productForm">
-  <mat-form-field appearance="outline" *ngIf="productCategories$ | async as productCategories">
-    <mat-label>Select category</mat-label>
-      <mat-select formControlName="category">
-        @for (category of productCategories; track category) {
-          <mat-option [value]="category.name">{{ category.name }}</mat-option>
-        }
-      </mat-select>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Product name</mat-label>
-    <input type="text" matInput formControlName="productName">
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Price</mat-label>
-    <input type="number" matInput formControlName="price">
-  </mat-form-field>
-  <mat-radio-group formControlName="measurement">
-    <mat-label>Measurement:&nbsp;</mat-label>
-    <mat-radio-button class="example-margin" value="kg">kg</mat-radio-button>
-    <mat-radio-button class="example-margin" value="unit">unit</mat-radio-button>
-  </mat-radio-group>
-  <div class="drag-and-drop" appDragAndDrop (dropFile)="dragFile($event)">
-    <img *ngIf="productFormImg.value" #fileImg alt="">
+  <div class="product-form__left-side">
+    <mat-form-field appearance="outline" *ngIf="productCategories$ | async as productCategories">
+      <mat-label>Select category</mat-label>
+        <mat-select formControlName="category">
+          @for (category of productCategories; track category) {
+            <mat-option [value]="category.name">{{ category.name }}</mat-option>
+          }
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Product name</mat-label>
+      <input type="text" matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input type="number" matInput formControlName="price">
+    </mat-form-field>
+    <mat-radio-group formControlName="measurement">
+      <mat-label>Measurement:&nbsp;</mat-label>
+      <mat-radio-button class="example-margin" value="kg">kg</mat-radio-button>
+      <mat-radio-button class="example-margin" value="unit">unit</mat-radio-button>
+    </mat-radio-group>
   </div>
-  <input (change)="selectFile($event)" #fileInput type="file" accept="image/jpeg">
-  <button mat-raised-button [disabled]="productForm.invalid" (click)="addProduct()">Add product</button>
+  <div class="product-form__right-side">
+    <div class="drag-and-drop" appDragAndDrop (dropFile)="dragFile($event)">
+      @if (productFormImg.value) {
+        <img #fileImg alt="">
+      } @else {
+        <div>Drag file here</div>
+      }
+    </div>
+    <input (change)="selectFile($event)" #fileInput type="file" accept="image/jpeg">
+    <button mat-raised-button [disabled]="productForm.invalid" (click)="addProduct()">Add product</button>
+  </div>
 </form>
