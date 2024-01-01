@@ -5,7 +5,20 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
-import { Subject, combineLatest, concatMap, find, from, fromEvent, map, switchMap, takeUntil } from 'rxjs';
+import {
+  Subject,
+  combineLatest,
+  concatMap,
+  find,
+  from,
+  fromEvent,
+  map,
+  switchMap,
+  takeUntil,
+  filter,
+  tap,
+  catchError, EMPTY, finalize
+} from 'rxjs';
 
 import { ProductCategoriesService } from '@services/productCategories.service';
 
@@ -26,15 +39,12 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   private readonly productsCategoriesService = inject(ProductCategoriesService);
   private readonly router = inject(Router);
 
-  private readonly destroy$ = new Subject<void>;  
+  private readonly destroy$ = new Subject<void>;
   categoryForm!: FormGroup;
 
   get formCategory(): AbstractControl {
     return this.categoryForm.get('category') as FormControl;
   }
-
-  @ViewChild('input', { static: true })
-  readonly categoryInput!: ElementRef<HTMLInputElement>;
 
   ngOnInit(): void {
     this.initCategoryForm();
@@ -48,26 +58,20 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
 
   onCategoryInput() {
     combineLatest([
-      fromEvent(this.categoryInput.nativeElement, 'input').pipe(
-        map(e => (e.target as HTMLInputElement).value),
-        takeUntil(this.destroy$)
-      ),
-      this.productsCategoriesService.getProductsCategories()
+      this.formCategory.valueChanges.pipe(takeUntil(this.destroy$)),
+      this.productsCategoriesService.getProductsCategories().pipe(
+        catchError(() => EMPTY)
+      )
     ]).pipe(
-      concatMap(([categoryName, categories]) => from(categories).pipe(
-        find(category => category.name === categoryName),
-        map(Boolean)
-      ))
-    ).subscribe((isError) => {
-      if (isError) {
-        this.formCategory.setErrors({'alreadyExists': isError});
-        return;
-      }      
-    })
+      switchMap(([categoryName, categories]) => from(categories).pipe(
+        filter(category => category.name === categoryName),
+        tap(() => this.formCategory.setErrors({'occupied': true}))
+      )),
+    ).subscribe();
   }
 
   addCategory(): void {
-    if (this.categoryForm.invalid) {  
+    if (this.categoryForm.invalid) {
       return;
     }
     const { category } = this.categoryForm.getRawValue();

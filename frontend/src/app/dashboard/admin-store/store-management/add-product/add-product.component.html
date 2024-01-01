@@ -11,6 +11,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Product name</mat-label>
       <input type="text" matInput formControlName="name">
+      <mat-error *ngIf="productFormName.hasError('occupied')">Product name occupied</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Price</mat-label>
