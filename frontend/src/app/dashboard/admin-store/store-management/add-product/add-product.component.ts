@@ -62,6 +62,9 @@ export class AddProductComponent implements OnInit, OnDestroy {
   @ViewChild('fileImg')
   readonly fileImg!: ElementRef<HTMLImageElement>;
 
+  @ViewChild('nameInput', { static: true })
+  readonly nameInput!: ElementRef<HTMLInputElement>;
+
   productForm!: FormGroup;
 
   get productFormImg(): AbstractControl {
@@ -124,6 +127,10 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
   selectFile(e: Event) {
     this.setUpFile((e.target as HTMLInputElement).files![0]);
+  }
+
+  checkCategoryValue() {
+    this.productFormName.enable();
   }
 
   dragFile(file: File) {
