@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Storage, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
+import { Storage, deleteObject, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
 import { from } from 'rxjs';
 
 @Injectable({
@@ -18,5 +18,10 @@ export class StorageService {
     }
     const storageRef = ref(this.storage, file.name);
     return from(uploadBytes(storageRef, file, metadata));
+  }
+
+  deleteImg(fileName: string) {
+    const deleteRef = ref(this.storage, `${fileName}.jpg`);
+    return deleteObject(deleteRef);
   }
 }

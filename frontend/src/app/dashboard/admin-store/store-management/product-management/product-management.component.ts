@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
@@ -14,6 +14,7 @@ import { Product, UpdateProduct } from '@entities/product';
 import { ProductCategoriesService } from '@services/productCategories.service';
 import { ProductsService } from '@services/products.service';
 import { productPriceValidator } from '@validators/productPrice.validator';
+import { StorageService } from '@services/firebase/storage.service';
 
 @Component({
   standalone: true,
@@ -34,6 +35,7 @@ import { productPriceValidator } from '@validators/productPrice.validator';
 export class ProductManagementComponent implements OnInit {
   private readonly productsCategoriesService = inject(ProductCategoriesService);
   private readonly productsService = inject(ProductsService);
+  private readonly storageService = inject(StorageService);
   private readonly router = inject(Router);
 
   readonly productCategories$: Observable<ProductCategory[]> = this.productsCategoriesService.getProductsCategories();
@@ -54,10 +56,12 @@ export class ProductManagementComponent implements OnInit {
     this.products$ = this.productsService.getProducts(event.value);
   }
 
-  deleteProduct(productId: string) {
-    this.productsService.deleteProduct(this.selectedCategory,productId).subscribe({
+  deleteProduct(productName: string, productId: string) {
+    this.productsService.deleteProduct(this.selectedCategory, productId).pipe(
+      switchMap(() => this.storageService.deleteImg(productName))
+    ).subscribe({
       error: (e) => console.log(e.message),
-      // complete: () => ,
+      complete: () => this.router.navigate(['']),
     });
   }
   
