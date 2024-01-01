@@ -14,9 +14,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import {
+  catchError,
   combineLatest, concatMap,
   debounceTime,
-  distinctUntilChanged, filter,
+  distinctUntilChanged, EMPTY, filter,
   finalize, find, from,
   Observable,
   Subject,
@@ -108,7 +109,9 @@ export class AddProductComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
       ),
       this.productFormCategory.valueChanges.pipe(
-        switchMap((productCategory) => this.productsService.getProducts(productCategory)),
+        switchMap((productCategory) => this.productsService.getProducts(productCategory).pipe(
+          catchError(() => EMPTY)
+        )),
         takeUntil(this.destroy$)
       )
     ]).pipe(
