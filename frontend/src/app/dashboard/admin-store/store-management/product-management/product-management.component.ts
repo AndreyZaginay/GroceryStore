@@ -44,7 +44,7 @@ export class ProductManagementComponent implements OnInit {
   products$!: Observable<Product[]>;
   selectedCategory!: string;
 
-  get productFromPrice(): AbstractControl {
+  get productFormPrice(): AbstractControl {
     return this.updateProductForm.get('newPrice') as FormControl;
   }
   

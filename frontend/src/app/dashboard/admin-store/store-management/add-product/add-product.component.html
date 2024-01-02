@@ -12,10 +12,13 @@
       <mat-label>Product name</mat-label>
       <input type="text" matInput formControlName="name">
       <mat-error *ngIf="productFormName.hasError('occupied')">Product name occupied</mat-error>
+      <mat-error *ngIf="productFormName.hasError('required')">This fill is required</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Price</mat-label>
-      <input type="number" matInput formControlName="price">
+      <input type="number" min="0" matInput formControlName="price">
+      <mat-error *ngIf="productFormPrice.hasError('required')">This fill is required</mat-error>
+      <mat-error *ngIf="productFormPrice.hasError('productPrice') && productFormPrice.dirty">Price can not be null or less</mat-error>
     </mat-form-field>
     <mat-radio-group formControlName="measurement">
       <mat-label>Measurement:&nbsp;</mat-label>

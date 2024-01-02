@@ -3,7 +3,6 @@ import {Component, ElementRef, OnInit, ViewChild, inject, OnDestroy} from '@angu
 import {
   AbstractControl,
   FormControl,
-  FormControlName,
   FormGroup,
   ReactiveFormsModule,
   Validators
@@ -15,10 +14,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import {
   catchError,
-  combineLatest, concatMap,
+  combineLatest,
   debounceTime,
   distinctUntilChanged, EMPTY, filter,
-  finalize, find, from,
+  from,
   Observable,
   Subject,
   switchMap,
@@ -30,6 +29,7 @@ import { ProductCategory } from '@entities/productCategory';
 import { ProductCategoriesService } from '@services/productCategories.service';
 import { StorageService } from '@services/firebase/storage.service';
 import { ProductsService } from '@services/products.service';
+import { productPriceValidator } from '@validators/productPrice.validator';
 
 @Component({
   selector: 'app-add-product',
@@ -55,13 +55,11 @@ export class AddProductComponent implements OnInit, OnDestroy {
   private readonly storageService = inject(StorageService);
 
   readonly productCategories$: Observable<ProductCategory[]> = this.productsCategoriesService.getProductsCategories();
-  productImgUrl: string | undefined;
 
   @ViewChild('fileInput')
   readonly fileInput!: ElementRef<HTMLInputElement>;
   @ViewChild('fileImg')
   readonly fileImg!: ElementRef<HTMLImageElement>;
-
   @ViewChild('nameInput', { static: true })
   readonly nameInput!: ElementRef<HTMLInputElement>;
 
@@ -77,6 +75,10 @@ export class AddProductComponent implements OnInit, OnDestroy {
 
   get productFormName() {
     return this.productForm.get('name') as FormControl;
+  }
+
+  get productFormPrice() {
+    return this.productForm.get('price') as FormControl;
   }
 
   ngOnInit(): void {
@@ -159,7 +161,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
     this.productForm = new FormGroup({
       category: new FormControl(null, Validators.required),
       name: new FormControl({value: null, disabled: true}, Validators.required),
-      price: new FormControl( null, Validators.required),
+      price: new FormControl( null, [Validators.required, productPriceValidator]),
       measurement: new FormControl(null, Validators.required),
       image: new FormControl('', Validators.required)
     })

@@ -7,7 +7,7 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input type="password" matInput formControlName="password">
+        <input type="password" matInput formControlName="password">     
         <mat-error *ngIf="registerFormPassword.hasError('minlength')">Min 8 symbols</mat-error>
         <mat-error *ngIf="registerFormPassword.hasError('required')">This fill is required</mat-error>
     </mat-form-field>

@@ -33,9 +33,9 @@
         <form action="" [formGroup]="updateProductForm">
           <div>Enter new price</div>
           <mat-form-field>
-            <input #priceInput type="number" matInput formControlName="newPrice">
-            <mat-error *ngIf="productFromPrice.hasError('required')">This fill is required</mat-error>
-            <mat-error *ngIf="productFromPrice.hasError('productPrice') && productFromPrice.dirty">Null or less</mat-error>
+            <input #priceInput type="number" min="0" matInput formControlName="newPrice">
+            <mat-error *ngIf="productFormPrice.hasError('required')">This fill is required</mat-error>
+            <mat-error *ngIf="productFormPrice.hasError('productPrice') && productFormPrice.value">Price can not be null or less</mat-error>
           </mat-form-field>
           <button type="submit" (click)="saveChanges(product.id)" mat-raised-button [disabled]="updateProductForm.invalid">Save</button>
         </form>
