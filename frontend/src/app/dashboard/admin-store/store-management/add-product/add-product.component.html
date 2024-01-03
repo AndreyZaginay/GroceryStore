@@ -34,7 +34,11 @@
         <div>Drag file here</div>
       }
     </div>
-    <input (change)="selectFile($event)" #fileInput type="file" accept="image/jpeg">
+    <div>
+      <button type="button" mat-raised-button (click)="onEmitFileSelection()">Select file</button>
+      <button type="button" mat-raised-button (click)="removeSelectedFile()">remove file</button>
+    </div>
+    <input (change)="selectFile($event)" #fileInput type="file" accept="image/jpeg" class="file__input">
     <button mat-raised-button [disabled]="productForm.invalid" (click)="addProduct()">Add product</button>
   </div>
 </form>

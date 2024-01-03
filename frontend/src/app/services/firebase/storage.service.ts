@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Storage, deleteObject, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
+import { SettableMetadata, Storage, deleteObject, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
 import { from } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class StorageService {
     return from(getDownloadURL(docRef));
   }
 
-  uploadDocFile(file: File, metadata?: any) {
+  uploadDocFile(file: File, metadata?: SettableMetadata) {
     const storageRef = ref(this.storage, file.name);
     return from(uploadBytes(storageRef, file, metadata));
   }

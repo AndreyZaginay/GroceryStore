@@ -97,6 +97,14 @@ export class AddProductComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
+  onEmitFileSelection() {
+    this.fileInput.nativeElement.click();
+  }
+
+  removeSelectedFile() {
+    this.productForm.patchValue({ image: null });
+  }
+
   onChangeProductName() {
     combineLatest([
       this.productFormName.valueChanges.pipe(
