@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { CdkAccordionModule } from '@angular/cdk/accordion';
-import { MatButtonModule } from '@angular/material/button';
 
 import { ProfileComponent } from './profile.component';
+import { MaterialModule } from '@modules/material/material.module';
 
 const routes: Routes = [
   {
@@ -17,8 +16,7 @@ const routes: Routes = [
   declarations: [ProfileComponent],
   imports: [
     CommonModule,
-    CdkAccordionModule,
-    MatButtonModule,
+    MaterialModule,
     RouterModule.forChild(routes)
   ]
 })

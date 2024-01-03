@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MatDialogModule } from '@angular/material/dialog';
 
 import { ProductsService } from '@services/products.service';
 import { ProductCategoriesService } from '@services/productCategories.service';
@@ -11,6 +10,7 @@ import { BasketComponent } from './basket/basket.component';
 import { DialogComponent } from './basket/dialog/dialog.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductCardComponent } from './product-list/product-card/product-card.component';
+import { MaterialModule } from '@modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { ProductCardComponent } from './product-list/product-card/product-card.c
   ],
   imports: [
     CommonModule,
-    MatDialogModule,
+    MaterialModule,
     RouterModule.forChild(routes)
   ],
   providers: [

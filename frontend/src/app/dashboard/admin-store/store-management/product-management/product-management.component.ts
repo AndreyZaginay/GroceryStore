@@ -2,11 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Observable, switchMap } from 'rxjs';
-import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { CdkAccordionModule } from '@angular/cdk/accordion';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
+import { MatSelectChange } from '@angular/material/select';
 import { Router } from '@angular/router';
 
 import { ProductCategory } from '@entities/productCategory';
@@ -15,17 +11,14 @@ import { ProductCategoriesService } from '@services/productCategories.service';
 import { ProductsService } from '@services/products.service';
 import { productPriceValidator } from '@validators/productPrice.validator';
 import { StorageService } from '@services/firebase/storage.service';
+import { MaterialModule } from '@modules/material/material.module';
 
 @Component({
   standalone: true,
   imports: [
-    MatSelectModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    CdkAccordionModule,
-    MatInputModule,
     ReactiveFormsModule,
     FormsModule,
+    MaterialModule,
     CommonModule
   ],
   selector: 'app-product-management',
@@ -58,7 +51,10 @@ export class ProductManagementComponent implements OnInit {
 
   deleteProduct(productName: string, productId: string) {
     this.productsService.deleteProduct(this.selectedCategory, productId).pipe(
-      switchMap(() => this.storageService.deleteImg(productName))
+      switchMap(() => {
+        const fileName = `${productName}.jpg`;
+        return this.storageService.deleteDocFile(fileName);
+      })
     ).subscribe({
       error: (e) => console.log(e.message),
       complete: () => this.router.navigate(['']),

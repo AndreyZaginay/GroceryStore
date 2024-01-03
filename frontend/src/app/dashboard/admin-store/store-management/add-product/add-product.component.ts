@@ -7,11 +7,6 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { MatRadioModule } from '@angular/material/radio';
 import {
   catchError,
   combineLatest,
@@ -30,6 +25,7 @@ import { ProductCategoriesService } from '@services/productCategories.service';
 import { StorageService } from '@services/firebase/storage.service';
 import { ProductsService } from '@services/products.service';
 import { productPriceValidator } from '@validators/productPrice.validator';
+import { MaterialModule } from '@modules/material/material.module';
 
 @Component({
   selector: 'app-add-product',
@@ -37,11 +33,7 @@ import { productPriceValidator } from '@validators/productPrice.validator';
   imports: [
     DragAndDropDirective,
     ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatRadioModule,
+    MaterialModule,
     CommonModule
   ],
   templateUrl: './add-product.component.html',
@@ -131,10 +123,6 @@ export class AddProductComponent implements OnInit, OnDestroy {
     this.setUpFile((e.target as HTMLInputElement).files![0]);
   }
 
-  checkCategoryValue() {
-    this.productFormName.enable();
-  }
-
   dragFile(file: File) {
     const dataTransfer = new DataTransfer;
     dataTransfer.items.add(file);
@@ -173,7 +161,10 @@ export class AddProductComponent implements OnInit, OnDestroy {
     }
     const { image, category, ...product } = this.productForm.getRawValue();
     const productImg = new File([ image ], `${ product.name }.jpg`);
-    this.storageService.uploadProductImg(productImg).pipe(
+    const uploadMetadata = {
+      contentType: 'image/jpeg'
+    }
+    this.storageService.uploadDocFile(productImg, uploadMetadata).pipe(
       switchMap(() => this.productsService.addProduct(category, product))
     ).subscribe({
       complete: () => {

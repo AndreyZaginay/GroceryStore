@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 
 import { Product } from '@entities/product';
 import { Purchase } from '@entities/purchase';
 import { BasketService } from './basket.service';
-import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 
 @Component({

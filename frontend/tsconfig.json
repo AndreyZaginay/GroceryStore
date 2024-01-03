@@ -6,7 +6,8 @@
       "@services/*": ["src/app/services/*"],
       "@entities/*": ["src/app/entities/*"],
       "@validators/*": ["src/app/shared/validators/*"],
-      "@directives/*": ["src/app/directives/*"]
+      "@directives/*": ["src/app/directives/*"],
+      "@modules/*": ["src/app/shared/modules/*"]
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",

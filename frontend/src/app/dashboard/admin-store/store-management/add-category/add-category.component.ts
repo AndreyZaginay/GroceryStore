@@ -1,35 +1,27 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import {
   Subject,
   combineLatest,
-  concatMap,
-  find,
   from,
-  fromEvent,
-  map,
   switchMap,
   takeUntil,
   filter,
   tap,
-  catchError, EMPTY, finalize
+  catchError, EMPTY
 } from 'rxjs';
 
 import { ProductCategoriesService } from '@services/productCategories.service';
+import { MaterialModule } from '@modules/material/material.module';
 
 @Component({
   selector: 'app-add-category',
   standalone: true,
   imports: [
     CommonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
+    MaterialModule,
     ReactiveFormsModule
   ],
   templateUrl: './add-category.component.html',

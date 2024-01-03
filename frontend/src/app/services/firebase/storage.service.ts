@@ -8,20 +8,18 @@ import { from } from 'rxjs';
 export class StorageService {
   private readonly storage: Storage = inject(Storage);
   
-  getProductImg(productName: string) {
-    return from(getDownloadURL(ref(this.storage, productName + '.jpg')));
+  getFileDoc(docUrl: string) {
+    const docRef = ref(this.storage, docUrl)
+    return from(getDownloadURL(docRef));
   }
 
-  uploadProductImg(file: File) {
-    const metadata = {
-      contentType: 'image/jpeg'
-    }
+  uploadDocFile(file: File, metadata?: any) {
     const storageRef = ref(this.storage, file.name);
     return from(uploadBytes(storageRef, file, metadata));
   }
 
-  deleteImg(fileName: string) {
-    const deleteRef = ref(this.storage, `${fileName}.jpg`);
+  deleteDocFile(fileName: string) {
+    const deleteRef = ref(this.storage, fileName);
     return deleteObject(deleteRef);
   }
 }
