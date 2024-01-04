@@ -1,7 +1,7 @@
 import { Routes } from "@angular/router";
 
 import { DashboardComponent } from "./dashboard.component";
-import { authGuard, isAdminGuard } from "../shared/guards/auth.guard";
+import { authGuard, isAdminGuard } from "@guards/auth.guard";
 
 export const routes: Routes = [
     {
