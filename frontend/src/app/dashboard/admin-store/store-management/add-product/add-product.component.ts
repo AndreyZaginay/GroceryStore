@@ -121,7 +121,7 @@ export class AddProductComponent implements OnInit, OnDestroy {
       )
     ]).pipe(
       switchMap(([productName, products]) => from(products).pipe(
-        filter((product) => product.name === productName),
+        filter((product) => product.name.toLowerCase() === productName.toLowerCase()),
         tap(() => this.productFormName.setErrors({occupied: true})),
       )),
     ).subscribe();
